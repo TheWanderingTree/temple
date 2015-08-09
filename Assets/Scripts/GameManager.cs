@@ -3,28 +3,53 @@ using System.Collections;
 
 public class GameManager : Singleton<GameManager> {
 
-	private float _timeRemaining;
+	// CLASS FIELDS
 
-	public float TimeRemaining {
-		get { return _timeRemaining; }
-		set { _timeRemaining = value; }
+	private bool paused = false;  										// True if the game is paused	
+
+	public enum GamePhase { submarine, ocean, dream } ;					// Enumeration for game phases
+	private GamePhase phase;											// Current game phase (submarine, ocean or dream)
+
+
+	// CLASS PROPERTIES
+
+	public bool Paused 
+	{ 
+		get 
+		{
+			return paused;
+		} 
+		set 
+		{
+			paused = value;
+		} 
 	}
 
-	private float maxTime = 5 * 60; //In seconds
-
-	// Use this for initialization
-	void Start () {
-		TimeRemaining = maxTime;
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		TimeRemaining -= Time.deltaTime;
-
-		if (TimeRemaining <= 0) {
-			Application.LoadLevel(Application.loadedLevel);
-			TimeRemaining = maxTime;
+	public GamePhase Phase 
+	{
+		get
+		{
+			return phase;
 		}
+		set
+		{
+			phase = value;
+		}
+	}
+
+
+	// CLASS METHODS
+	
+	public void pauseGame()
+	// pauses the game
+	{
+		if (!Paused) { Paused = true; } else { Paused = false; }	
+	}
+	
+	public void changeToPhase( GamePhase chosenPhase )
+	// changes the game phase
+	{
+		Phase = chosenPhase;
+		print ("Phase: " + Phase);
 	}
 }

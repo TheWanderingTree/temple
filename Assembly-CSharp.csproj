@@ -51,8 +51,6 @@
      <Compile Include="Assets\Scripts\Dream.cs" />
      <Compile Include="Assets\Scripts\Exploration.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\GameState.cs" />
-     <Compile Include="Assets\Scripts\Init.cs" />
      <Compile Include="Assets\Scripts\Journal.cs" />
      <Compile Include="Assets\Scripts\LandmarkManager.cs" />
      <Compile Include="Assets\Scripts\Leviathan.cs" />

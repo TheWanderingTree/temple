@@ -37,7 +37,7 @@ public class Player : MonoBehaviour {
 	static public void Dive()
 		// transitions from submarine phase to ocean phase
 	{
-		GameState.changeToPhase (GameState.GamePhase.ocean);
+		GameManager.Instance.changeToPhase (GameManager.GamePhase.ocean);
 	}
 
 	static public void stayInside()

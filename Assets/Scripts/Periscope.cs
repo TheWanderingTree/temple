@@ -5,8 +5,6 @@ public class Periscope : MonoBehaviour {
 		
 	// CLASS VARIABLES
 
-	public bool locked;											// True if the periscope bearing has been committed
-
 	public int tier = 1;										// Tier the periscope is auditioning/viewing (1-3)
 
 	public enum Direction { N, NE, E, SE, S, SW, W, NW }		// Enumeration for compass directions
@@ -59,10 +57,7 @@ public class Periscope : MonoBehaviour {
 	void commitBearing()
 		// locks in the current bearing for exploration, disables searchlight in periscope view
 	{
-		if (!locked) {
-			locked = true;
-			chosenBearing = bearing;
-		}
+		chosenBearing = bearing;	
 	}
 
 	void Update() {

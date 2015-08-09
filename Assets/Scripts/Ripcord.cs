@@ -21,7 +21,7 @@ public class Ripcord : MonoBehaviour {
 	{
 		used = true;
 		if (hasCharge) { hasCharge = false; }
-		GameState.changeToPhase (GameState.GamePhase.submarine);
+		GameManager.Instance.changeToPhase (GameManager.GamePhase.submarine);
 	}
 
 	void rechargeRipcord()

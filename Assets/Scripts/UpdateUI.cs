@@ -5,7 +5,7 @@ using System.Collections;
 public class UpdateUI : MonoBehaviour {
 
 	[SerializeField]
-	private Text timerLabel;
+	private Text phaseLabel;
 
 	// Use this for initialization
 	void Start () {
@@ -14,10 +14,8 @@ public class UpdateUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timerLabel.text = FormatTime(GameManager.Instance.TimeRemaining);
+		phaseLabel.text = "Game Phase: " + GameManager.Instance.Phase.ToString();
 	}
 
-	private string FormatTime(float timeInSeconds) {
-		return string.Format("{0}:{1:00}", Mathf.FloorToInt(timeInSeconds/60), Mathf.FloorToInt(timeInSeconds % 60));
-	}
+
 }
