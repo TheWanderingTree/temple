@@ -27,7 +27,6 @@ public class Landmark : IComparable<Landmark> {
 
 	public AudioClip AudioPreview;								// Sound effect associated with the landmark in periscope view
 
-
 	// CLASS CONSTRUCTORS
 
 	public Landmark( string title, string description, int tier )
@@ -88,7 +87,9 @@ public class Landmark : IComparable<Landmark> {
 
 }
 	
-public class LandmarkManager : MonoBehaviour {	
+public class LandmarkManager : Singleton<LandmarkManager> {	
+
+	public List<Landmark> tier1Landmarks = new List<Landmark>();
 
 	public T selectRandomItem<T>( List<T> list) {
 		int chosenIndex = UnityEngine.Random.Range (0, list.Count);
@@ -244,8 +245,7 @@ public class LandmarkManager : MonoBehaviour {
 			);
 		
 		wreck.Endgate = true; wreck.Distance = 300;
-		
-		List<Landmark> tier1Landmarks = new List<Landmark>();
+
 		
 		tier1Landmarks.Add(wreck);
 		tier1Landmarks.Add(lifeboat);

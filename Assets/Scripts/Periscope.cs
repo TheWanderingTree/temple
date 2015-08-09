@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Periscope : MonoBehaviour {
+public class Periscope : Singleton<Periscope> {
 		
 	// CLASS VARIABLES
 
@@ -32,6 +32,7 @@ public class Periscope : MonoBehaviour {
 	void rotatePeriscope()
 	// rotates the periscope
 	{
+	
 		if (Input.GetKeyDown("right")) {
 
 			int intBearing = (int)bearing;
@@ -39,13 +40,16 @@ public class Periscope : MonoBehaviour {
 			if (intBearing < 7) { bearing++; }
 			else { bearing = Direction.N; }
 
+
 		} else if (Input.GetKeyDown("left")) {
 
 			int intBearing = (int)bearing;
 
 			if (intBearing > 0) { bearing--; }
 			else { bearing = Direction.NW; }
+
 		}
+
 	}
 
 	void playAudioPreview()
