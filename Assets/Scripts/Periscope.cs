@@ -27,6 +27,8 @@ public class Periscope : Singleton<Periscope> {
 				tier--;
 			}
 		}
+
+		UpdateUI.Instance.displayLandmarks();
 	}
 
 	void rotatePeriscope()
@@ -40,6 +42,8 @@ public class Periscope : Singleton<Periscope> {
 			if (intBearing < 7) { bearing++; }
 			else { bearing = Direction.N; }
 
+			UpdateUI.Instance.bearingIndicator.transform.Rotate(0,0,-45);
+
 
 		} else if (Input.GetKeyDown("left")) {
 
@@ -47,6 +51,8 @@ public class Periscope : Singleton<Periscope> {
 
 			if (intBearing > 0) { bearing--; }
 			else { bearing = Direction.NW; }
+
+			UpdateUI.Instance.bearingIndicator.transform.Rotate(0,0,45);
 
 		}
 

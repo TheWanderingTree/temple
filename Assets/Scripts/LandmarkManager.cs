@@ -90,16 +90,18 @@ public class Landmark : IComparable<Landmark> {
 public class LandmarkManager : Singleton<LandmarkManager> {	
 
 	public List<Landmark> tier1Landmarks = new List<Landmark>();
+	public List<Landmark> tier2Landmarks = new List<Landmark>();
+	public List<Landmark> tier3Landmarks = new List<Landmark>();
 
 	public T selectRandomItem<T>( List<T> list) {
-		int chosenIndex = UnityEngine.Random.Range (0, list.Count);
+		int chosenIndex = UnityEngine.Random.Range (0, list.Count-1);
 		T chosenItem = list[chosenIndex]; 
 
 		return chosenItem;
 	}
 
 	public T pluckRandomItem<T>( List<T> list) {
-		int chosenIndex = UnityEngine.Random.Range (0, list.Count);
+		int chosenIndex = UnityEngine.Random.Range (0, list.Count-1);
 		T chosenItem = list[chosenIndex]; 
 		list.RemoveAt (chosenIndex);
 		return chosenItem;
@@ -127,80 +129,86 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 			//assign random bearing to landmark
 			landmark.Bearing = selectRandomItem(availableBearings);
 
-			//pluck a chunk from the available chunks for that bearing and assign a random distance within that chunk to the landmark
+			//pluck a chunk from the available chunks for that bearing and remove a bearing from the list of available bearings if two chunks have already been taken
 			if (!landmark.Endgate) {
-			switch (landmark.Bearing) {
 
-				case Landmark.Direction.N:
-					landmark.DistanceChunk = pluckRandomItem(availableNorth);
-					break;
+				//randomize chunk limit
+				int chunkLimit = UnityEngine.Random.Range(4,5);
 
-				case Landmark.Direction.NE:
-					landmark.DistanceChunk = pluckRandomItem(availableNortheast);
-					break;
+				switch (landmark.Bearing) {
 
-				case Landmark.Direction.E:
-					landmark.DistanceChunk = pluckRandomItem(availableEast);
-					break;
+					case Landmark.Direction.N:
+						landmark.DistanceChunk = pluckRandomItem(availableNorth);
+					if (availableNorth.Count <= chunkLimit) { availableBearings.Remove(Landmark.Direction.N); }
+						break;
 
-				case Landmark.Direction.SE:
-					landmark.DistanceChunk = pluckRandomItem(availableSoutheast);
-					break;
+					case Landmark.Direction.NE:
+						landmark.DistanceChunk = pluckRandomItem(availableNortheast);
+					if (availableNortheast.Count <= chunkLimit) { availableBearings.Remove(Landmark.Direction.NE); }
+						break;
 
-				case Landmark.Direction.S:
-					landmark.DistanceChunk = pluckRandomItem(availableSouth);
-					break;
+					case Landmark.Direction.E:
+						landmark.DistanceChunk = pluckRandomItem(availableEast);
+					if (availableEast.Count <= chunkLimit) { availableBearings.Remove(Landmark.Direction.E); }
+						break;
+
+					case Landmark.Direction.SE:
+						landmark.DistanceChunk = pluckRandomItem(availableSoutheast);
+					if (availableSoutheast.Count <= chunkLimit) { availableBearings.Remove(Landmark.Direction.SE); }
+						break;
+
+					case Landmark.Direction.S:
+						landmark.DistanceChunk = pluckRandomItem(availableSouth);
+					if (availableSouth.Count <= chunkLimit) { availableBearings.Remove(Landmark.Direction.S); }
+						break;
+						
+					case Landmark.Direction.SW:
+						landmark.DistanceChunk = pluckRandomItem(availableSouthwest);
+					if (availableSouthwest.Count <= chunkLimit) { availableBearings.Remove(Landmark.Direction.SW); }
+						break;
+						
+					case Landmark.Direction.W:
+						landmark.DistanceChunk = pluckRandomItem(availableWest);
+					if (availableWest.Count <= chunkLimit) { availableBearings.Remove(Landmark.Direction.W); }
+						break;
+						
+					case Landmark.Direction.NW:
+						landmark.DistanceChunk = pluckRandomItem(availableNorthwest);
+					if (availableNorthwest.Count <= chunkLimit) { availableBearings.Remove(Landmark.Direction.NW); }
+						break;
+				} 
+
+				// assign a random distance within that chunk to the landmark
+				switch (landmark.DistanceChunk) {
+
+					case Landmark.Chunk.A:
+						landmark.Distance = UnityEngine.Random.Range(50, 75);
+						break;
+			
+					case Landmark.Chunk.B:
+						landmark.Distance = UnityEngine.Random.Range(75, 100);
+						break;
 					
-				case Landmark.Direction.SW:
-					landmark.DistanceChunk = pluckRandomItem(availableSouthwest);
-					break;
+					case Landmark.Chunk.C:
+						landmark.Distance = UnityEngine.Random.Range(100, 150);
+						break;
 					
-				case Landmark.Direction.W:
-					landmark.DistanceChunk = pluckRandomItem(availableWest);
-					break;
-					
-				case Landmark.Direction.NW:
-					landmark.DistanceChunk = pluckRandomItem(availableNorthwest);
-					break;
-			} 
+					case Landmark.Chunk.D:
+						landmark.Distance = UnityEngine.Random.Range(150, 200);
+						break;
 
-			switch (landmark.DistanceChunk) {
+					case Landmark.Chunk.E:
+						landmark.Distance = UnityEngine.Random.Range(200, 250);
+						break;
 
-				case Landmark.Chunk.A:
-					landmark.Distance = UnityEngine.Random.Range(15, 50);
-					break;
-		
-				case Landmark.Chunk.B:
-					landmark.Distance = UnityEngine.Random.Range(50, 100);
-					break;
-				
-				case Landmark.Chunk.C:
-					landmark.Distance = UnityEngine.Random.Range(100, 150);
-					break;
-				
-				case Landmark.Chunk.D:
-					landmark.Distance = UnityEngine.Random.Range(150, 200);
-					break;
+					case Landmark.Chunk.F:
+						landmark.Distance = UnityEngine.Random.Range(250, 285);
+						break;
 
-				case Landmark.Chunk.E:
-					landmark.Distance = UnityEngine.Random.Range(200, 250);
-					break;
-
-				case Landmark.Chunk.F:
-					landmark.Distance = UnityEngine.Random.Range(250, 285);
-					break;
-
-			}	
+				}	
 			}
 
-			//if landmarks in a bearing = 6, remove bearing from available bearings
 		}
-
-
-//		foreach (Landmark landmark in list) {
-//			landmark.randomizeBearing ();
-//			landmark.randomizeDistance ();
-//		}
 
 		list.Sort ();
 	}
@@ -243,8 +251,88 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 			"Small, white chimney structures spewing white, superheated fluids." ,
 			1 
 			);
+
+		Landmark canyon = new Landmark(
+			"Canyon" ,
+			"Cliffs with dozens of windows carved out of the walls." ,
+			1	
+			);
 		
+		
+		Landmark statue = new Landmark(
+			"Statue" ,
+			"A statue in the shape of the youth's head." ,
+			1 
+			);
+		
+		Landmark well = new Landmark(
+			"Well" ,
+			"A dark hole in the seafloor, about two meters wide." ,
+			1 
+			);
+		
+		Landmark torpedo = new Landmark(
+			"Torpedo" ,
+			"An undetonated torpedo." ,
+			1 
+			);
+		
+		Landmark nothing = new Landmark(
+			"Nothing" ,
+			"There is nothing here. Nothing at all." ,
+			1 
+			);
+		
+		Landmark oldsuit = new Landmark(
+			"Old Diving Suit" ,
+			"A canvas diving suit from the late 19th century." ,
+			1 
+			);
+
+		Landmark trench = new Landmark(
+			"Trench" ,
+			"An undetonated torpedo." ,
+			2 
+			);
+		
+		Landmark brinepool = new Landmark(
+			"Brine Pool" ,
+			"A lake of high-density brine on the ocean floor." ,
+			2 
+			);
+		
+		Landmark blacksmokers = new Landmark(
+			"Hydrothermal Vents" ,
+			"Huge, black chimney structures formed from minerals, which spew superheated fluids that look like billowing clouds of black smoke. The liquid is supercritical; it does not have distinct liquid or gas phases. It is hot enough to melt metal." ,
+			2 
+			);
+
+		Landmark dolphins = new Landmark(
+			"Dolphins" ,
+			"They are everywhere." ,
+			2 
+			);
+		
+		Landmark seaspiders = new Landmark(
+			"Sea spiders" ,
+			"Jesus christ fucking sea spiders." ,
+			2 
+			);
+		
+		Landmark giantsquid = new Landmark(
+			"Giant Squid" ,
+			"Because of course a giant squid." ,
+			2 
+			);
+
+		Landmark cave = new Landmark(
+			"Cave" ,
+			"Be a slave to the CAVE!" ,
+			2 
+			);
+
 		wreck.Endgate = true; wreck.Distance = 300;
+		cave.Endgate = true; cave.Distance = 300;
 
 		
 		tier1Landmarks.Add(wreck);
@@ -253,16 +341,38 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 		tier1Landmarks.Add(plateau);
 		tier1Landmarks.Add(seamount);
 		tier1Landmarks.Add(whitesmokers);
+		tier1Landmarks.Add(canyon);
+		tier1Landmarks.Add(statue);
+		tier1Landmarks.Add(well);
+		tier1Landmarks.Add(torpedo);
+		tier1Landmarks.Add(nothing);
+		tier1Landmarks.Add(oldsuit);
+
+		tier2Landmarks.Add(trench);
+		tier2Landmarks.Add(brinepool);
+		tier2Landmarks.Add(blacksmokers);
+		tier2Landmarks.Add(dolphins);
+		tier2Landmarks.Add(seaspiders);
+		tier2Landmarks.Add(giantsquid);
+		tier2Landmarks.Add(cave);
+
 
 		randomizeLandmarks (tier1Landmarks);
+		randomizeLandmarks (tier2Landmarks);
 
 
-
+		/* DEBUG INFO FOR LANDMARKS 
 		foreach (Landmark landmark in tier1Landmarks) {
 		
 			landmark.Print();
 
 		}
+
+		foreach (Landmark landmark in tier2Landmarks) {
+			
+			landmark.Print();
+			
+		} */
 
 	}
 
