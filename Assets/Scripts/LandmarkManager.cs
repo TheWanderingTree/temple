@@ -23,7 +23,8 @@ public class Landmark : IComparable<Landmark> {
 	public Chunk DistanceChunk;									// Subdivision of total tier distance the landmark is located within
 
 	public enum Direction { N, NE, E, SE, S, SW, W, NW }		// Enumeration for compass directions
-	public Direction Bearing;									// Compass bearing the landmark is located along (N, NE, E, SE, S, SW, W, NW)
+	public Direction DirectionChunk;							// Subdivision of compass rose covering 45 degrees
+	public int Bearing;									// Compass bearing the landmark is located along (N, NE, E, SE, S, SW, W, NW)
 
 	public AudioClip AudioPreview;								// Sound effect associated with the landmark in periscope view
 
@@ -149,8 +150,43 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 
 		foreach (Landmark landmark in list) {
 
-			//assign random bearing to landmark
-			landmark.Bearing = selectRandomItem(availableBearings);
+			//assign random direction chunk to landmark
+			landmark.DirectionChunk = selectRandomItem(availableBearings);
+
+			switch (landmark.DirectionChunk) {
+
+			case Landmark.Direction.N:
+				int rightOfNorth;
+				rightOfNorth = UnityEngine.Random.Range (0,1);
+				if (rightOfNorth == 0) {
+					landmark.Bearing = UnityEngine.Random.Range(338,359);
+				} else {
+					landmark.Bearing = UnityEngine.Random.Range (0,23);
+				}
+				break;
+			case Landmark.Direction.NE:
+				landmark.Bearing = UnityEngine.Random.Range (23, 68);
+				break;
+			case Landmark.Direction.E:
+				landmark.Bearing = UnityEngine.Random.Range (68, 113);
+				break;
+			case Landmark.Direction.SE:
+				landmark.Bearing = UnityEngine.Random.Range (113, 158);
+				break;
+			case Landmark.Direction.S:
+				landmark.Bearing = UnityEngine.Random.Range (158, 203);
+				break;
+			case Landmark.Direction.SW:
+				landmark.Bearing = UnityEngine.Random.Range (203, 248);
+				break;
+			case Landmark.Direction.W:
+				landmark.Bearing = UnityEngine.Random.Range (248, 293);
+				break;
+			case Landmark.Direction.NW:
+				landmark.Bearing = UnityEngine.Random.Range (293, 338);
+				break;
+
+			}
 
 			//pluck a chunk from the available chunks for that bearing and remove a bearing from the list of available bearings if two chunks have already been taken
 			if (!landmark.Endgate) {
@@ -158,7 +194,7 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 				//randomize chunk limit
 				int chunkLimit = UnityEngine.Random.Range(4,5);
 
-				switch (landmark.Bearing) {
+				switch (landmark.DirectionChunk) {
 
 					case Landmark.Direction.N:
 						landmark.DistanceChunk = pluckRandomItem(availableNorth);

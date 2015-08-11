@@ -23,6 +23,7 @@ public class UpdateUI : Singleton<UpdateUI> {
 
 	private GameObject landmarkTextObject;
 	private List<Landmark> chosenLandmarks;
+	private int audioPreviewThreshold = 5;					// How many degrees away from landmark at which audio begins playing
 
 	public static void PolarToCartesian(float radius, float degrees, float elevation, out Vector3 outCart){
 		float polar = degrees * Mathf.Deg2Rad;
@@ -46,43 +47,7 @@ public class UpdateUI : Singleton<UpdateUI> {
 		foreach (Landmark landmark in chosenLandmarks) {
 			
 			//get the bearing
-			
-			int chosenBearing = 0;
-			
-			switch (landmark.Bearing) {
-				
-			case Landmark.Direction.N:
-				chosenBearing = 0;
-				break;
-				
-			case Landmark.Direction.NE:
-				chosenBearing = 45;
-				break;
-				
-			case Landmark.Direction.E:
-				chosenBearing = 90;
-				break;
-				
-			case Landmark.Direction.SE:
-				chosenBearing = 135;
-				break;
-				
-			case Landmark.Direction.S:
-				chosenBearing = 180;
-				break;
-				
-			case Landmark.Direction.SW:
-				chosenBearing = 225;
-				break;
-				
-			case Landmark.Direction.W:
-				chosenBearing = 270;
-				break;
-				
-			case Landmark.Direction.NW:
-				chosenBearing = 315;
-				break;
-			}
+			int chosenBearing = landmark.Bearing;
 			
 			//get the distance
 			int chosenDistance = landmark.Distance;
@@ -128,20 +93,21 @@ public class UpdateUI : Singleton<UpdateUI> {
 	{
 
 		chosenLandmarks = LandmarkManager.Instance.getLandmarksFromTier (Periscope.Instance.tier );
-		
-		string bearingAsString = Periscope.Instance.bearing.ToString ();
-		
+
 		foreach (Landmark landmark in chosenLandmarks) {
-			
-			string landmarkBearingAsString = landmark.Bearing.ToString();
 			
 			//find the audio source for that landmark
 			GameObject landmarkTextObject = GameObject.Find (landmark.Title);
 			AudioSource audioSourceComponent = landmarkTextObject.GetComponent<AudioSource>();
 			
 			//play audio if periscope is facing the landmark
-			if (bearingAsString == landmarkBearingAsString) {
-				audioSourceComponent.Play ();
+			if (
+				(Periscope.Instance.bearing >= landmark.Bearing - audioPreviewThreshold) 
+				&& 
+				(Periscope.Instance.bearing <= landmark.Bearing + audioPreviewThreshold)) {
+					if (audioSourceComponent.isPlaying == false) {
+						audioSourceComponent.Play ();
+					}
 			} else {
 				audioSourceComponent.Stop();
 			}
