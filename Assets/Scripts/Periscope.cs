@@ -19,17 +19,22 @@ public class Periscope : Singleton<Periscope> {
 		if (Input.GetKeyDown ("up")) {
 			if (tier < 3) {
 				tier++;
+				UpdateUI.Instance.displayLandmarks ();
+				UpdateUI.Instance.playAudioPreview ();
+				UpdateUI.Instance.updateDebugText ();
 			}
 		}
 
 		if (Input.GetKeyDown ("down")) {
 			if (tier > 1) {
 				tier--;
+				UpdateUI.Instance.displayLandmarks ();
+				UpdateUI.Instance.playAudioPreview ();
+				UpdateUI.Instance.updateDebugText ();
 			}
 		}
 
-		UpdateUI.Instance.displayLandmarks ();
-		UpdateUI.Instance.playAudioPreview ();
+
 	}
 
 	void rotatePeriscope()
@@ -58,6 +63,7 @@ public class Periscope : Singleton<Periscope> {
 		}
 
 		UpdateUI.Instance.playAudioPreview ();
+		UpdateUI.Instance.updateDebugText ();
 
 	}
 

@@ -107,6 +107,29 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 		return chosenItem;
 	}
 
+	public List<Landmark> getLandmarksFromTier( int tier) {
+
+		List<Landmark> chosenList = null;
+
+		switch (tier) {
+		
+		case 1:
+			chosenList = LandmarkManager.Instance.tier1Landmarks;
+			break;
+		
+		case 2:
+			chosenList = LandmarkManager.Instance.tier2Landmarks;
+			break;
+		
+		case 3:
+			chosenList = LandmarkManager.Instance.tier3Landmarks;
+			break;
+		
+		}
+
+		return chosenList;
+	}
+
 	void randomizeLandmarks( List<Landmark> list ) {			// randomizes bearings and distances for all landmarks in a certain list, then sorts based on distance
 
 		//create list of available bearings

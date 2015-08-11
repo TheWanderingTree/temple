@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class UpdateUI : Singleton<UpdateUI> {
 
+	/*DEBUG UI OBJECTS*/
 	[SerializeField]
 	private Text phaseLabel;
 
@@ -21,8 +22,6 @@ public class UpdateUI : Singleton<UpdateUI> {
 	public GameObject bearingIndicator;
 
 	private GameObject landmarkTextObject;
-
-
 	private List<Landmark> chosenLandmarks;
 
 	public static void PolarToCartesian(float radius, float degrees, float elevation, out Vector3 outCart){
@@ -41,24 +40,7 @@ public class UpdateUI : Singleton<UpdateUI> {
 		}
 
 		//pull up the list of landmarks for the chosen tier
-
-		int tier = Periscope.Instance.tier;
-
-		switch (tier) {
-		
-		case 1:
-			chosenLandmarks = LandmarkManager.Instance.tier1Landmarks;
-			break;
-
-		case 2:
-			chosenLandmarks = LandmarkManager.Instance.tier2Landmarks;
-			break;
-
-		case 3:
-			chosenLandmarks = LandmarkManager.Instance.tier3Landmarks;
-			break;
-
-		}
+		chosenLandmarks = LandmarkManager.Instance.getLandmarksFromTier (Periscope.Instance.tier );
 	
 		//for each landmark in the list...
 		foreach (Landmark landmark in chosenLandmarks) {
@@ -145,23 +127,7 @@ public class UpdateUI : Singleton<UpdateUI> {
 		// plays sound effect(s) associated with landmark(s) along the current bearing
 	{
 
-		int tier = Periscope.Instance.tier;
-
-		switch (tier) {
-			
-		case 1:
-			chosenLandmarks = LandmarkManager.Instance.tier1Landmarks;
-			break;
-			
-		case 2:
-			chosenLandmarks = LandmarkManager.Instance.tier2Landmarks;
-			break;
-			
-		case 3:
-			chosenLandmarks = LandmarkManager.Instance.tier3Landmarks;
-			break;
-
-		}
+		chosenLandmarks = LandmarkManager.Instance.getLandmarksFromTier (Periscope.Instance.tier );
 		
 		string bearingAsString = Periscope.Instance.bearing.ToString ();
 		
@@ -183,12 +149,20 @@ public class UpdateUI : Singleton<UpdateUI> {
 		}
 	}
 
+	public void updateDebugText() 
+	// updates the debug text objects
+	{
+		bearingLabel.text = "Bearing: " + Periscope.Instance.bearing.ToString ();
+		tierLabel.text = "Tier: " + Periscope.Instance.tier.ToString ();
+	}
+
 	// Use this for initialization
 	void Start () {
 		phaseLabel.text = "Game Phase: " + GameManager.Instance.Phase.ToString();
 
 		displayLandmarks ();
 		playAudioPreview ();
+		updateDebugText ();
 	
 
 
@@ -198,8 +172,7 @@ public class UpdateUI : Singleton<UpdateUI> {
 	// Update is called once per frame
 	void Update () {
 
-		bearingLabel.text = "Bearing: " + Periscope.Instance.bearing.ToString ();
-		tierLabel.text = "Tier: " + Periscope.Instance.tier.ToString ();
+
 
 	
 	}
