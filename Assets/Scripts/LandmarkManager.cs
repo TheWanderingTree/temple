@@ -215,10 +215,13 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 
 	void Start () {
 
+		AudioClip wreckAudio = (AudioClip)Resources.Load ("test1");
+
 		Landmark wreck = new Landmark(
 			"Wreck" ,
 			"Get wrecked at a wrecked ship." ,
-			1	
+			1,
+			wreckAudio
 			);
 		
 		

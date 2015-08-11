@@ -131,8 +131,56 @@ public class UpdateUI : Singleton<UpdateUI> {
 			
 			//set the text
 			textComponent.text = "•";
+
+			//create an audio source component on the text object
+			AudioSource audioSourceComponent = landmarkTextObject.AddComponent<AudioSource>();
+			audioSourceComponent.clip = landmark.AudioPreview;
+			audioSourceComponent.loop = true;
+
 		}
 
+	}
+
+	public void playAudioPreview()
+		// plays sound effect(s) associated with landmark(s) along the current bearing
+	{
+
+		int tier = Periscope.Instance.tier;
+
+		switch (tier) {
+			
+		case 1:
+			chosenLandmarks = LandmarkManager.Instance.tier1Landmarks;
+			break;
+			
+		case 2:
+			chosenLandmarks = LandmarkManager.Instance.tier2Landmarks;
+			break;
+			
+		case 3:
+			chosenLandmarks = LandmarkManager.Instance.tier3Landmarks;
+			break;
+
+		}
+		
+		string bearingAsString = Periscope.Instance.bearing.ToString ();
+		
+		foreach (Landmark landmark in chosenLandmarks) {
+			
+			string landmarkBearingAsString = landmark.Bearing.ToString();
+			
+			//find the audio source for that landmark
+			GameObject landmarkTextObject = GameObject.Find (landmark.Title);
+			AudioSource audioSourceComponent = landmarkTextObject.GetComponent<AudioSource>();
+			
+			//play audio if periscope is facing the landmark
+			if (bearingAsString == landmarkBearingAsString) {
+				audioSourceComponent.Play ();
+			} else {
+				audioSourceComponent.Stop();
+			}
+			
+		}
 	}
 
 	// Use this for initialization
@@ -140,7 +188,8 @@ public class UpdateUI : Singleton<UpdateUI> {
 		phaseLabel.text = "Game Phase: " + GameManager.Instance.Phase.ToString();
 
 		displayLandmarks ();
-
+		playAudioPreview ();
+	
 
 
 

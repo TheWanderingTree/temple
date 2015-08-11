@@ -28,7 +28,8 @@ public class Periscope : Singleton<Periscope> {
 			}
 		}
 
-		UpdateUI.Instance.displayLandmarks();
+		UpdateUI.Instance.displayLandmarks ();
+		UpdateUI.Instance.playAudioPreview ();
 	}
 
 	void rotatePeriscope()
@@ -56,12 +57,8 @@ public class Periscope : Singleton<Periscope> {
 
 		}
 
-	}
+		UpdateUI.Instance.playAudioPreview ();
 
-	void playAudioPreview()
-	// plays sound effect(s) associated with landmark(s) along the current bearing
-	{
-		
 	}
 
 	void commitBearing()
