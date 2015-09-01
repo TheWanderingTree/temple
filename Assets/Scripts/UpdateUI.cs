@@ -22,6 +22,7 @@ public class UpdateUI : Singleton<UpdateUI> {
 	public GameObject bearingIndicator;
 
 	private GameObject landmarkTextObject;
+	private GameObject sphere;
 	private List<Landmark> chosenLandmarks;
 	private int audioPreviewThreshold = 5;					// How many degrees away from landmark at which audio begins playing
 
@@ -40,6 +41,14 @@ public class UpdateUI : Singleton<UpdateUI> {
 			GameObject.Destroy(child.gameObject);
 		}
 
+		if (GameObject.FindWithTag("Sphere")) {
+			GameObject[] spheres = GameObject.FindGameObjectsWithTag ("Sphere");
+
+			foreach (GameObject sphere in spheres) {
+				GameObject.Destroy(sphere.gameObject);
+			}
+		}
+
 		//pull up the list of landmarks for the chosen tier
 		chosenLandmarks = LandmarkManager.Instance.getLandmarksFromTier (Periscope.Instance.tier );
 	
@@ -55,6 +64,10 @@ public class UpdateUI : Singleton<UpdateUI> {
 			//calculate a vector for the position of landmark
 			Vector3 chosenVector;
 			PolarToCartesian (chosenDistance, chosenBearing, 0, out chosenVector);
+
+			GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+			sphere.tag = "Sphere";
+			sphere.transform.position = new Vector3(chosenVector.x/2,-0.85f,chosenVector.y/2);
 			
 			//create a new UI text object and make it a child of the map panel
 			landmarkTextObject = new GameObject ();
@@ -88,6 +101,28 @@ public class UpdateUI : Singleton<UpdateUI> {
 
 	}
 
+	IEnumerator FadeIn() {
+		
+		AudioSource thisAudioC = landmarkTextObject.GetComponent<AudioSource>();
+		float currentVol = thisAudioC.volume;
+		for (float f = currentVol; f <= 1; f += 0.05f) {
+			thisAudioC.volume = f;
+			yield return new WaitForSeconds(0.05f);
+		}
+	}
+
+	IEnumerator FadeOut() {
+		
+		AudioSource thisAudioC = landmarkTextObject.GetComponent<AudioSource>();
+		float currentVol = thisAudioC.volume;
+		for (float f = currentVol; f >= 0; f -= 0.05f) {
+			thisAudioC.volume = f;
+			yield return new WaitForSeconds(0.05f);
+		}
+		thisAudioC.Stop ();
+	}
+
+
 	public void playAudioPreview()
 		// plays sound effect(s) associated with landmark(s) along the current bearing
 	{
@@ -107,13 +142,20 @@ public class UpdateUI : Singleton<UpdateUI> {
 				(Periscope.Instance.bearing <= landmark.Bearing + audioPreviewThreshold)) {
 					if (audioSourceComponent.isPlaying == false) {
 						audioSourceComponent.Play ();
+						audioSourceComponent.volume = 0;
+						StartCoroutine("FadeIn");
 					}
 			} else {
-				audioSourceComponent.Stop();
+				if (audioSourceComponent.isPlaying == true) {
+					StartCoroutine("FadeOut");
+
+				}
 			}
 			
 		}
 	}
+
+
 
 	public void updateDebugText() 
 	// updates the debug text objects

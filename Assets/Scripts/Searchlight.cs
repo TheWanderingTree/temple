@@ -17,6 +17,11 @@ public class Searchlight : MonoBehaviour {
 	public LightType lightType;											// Current light type used by the searchlight (normal, bio, temple)
 
 	public Light lightObject;
+	public Light centerLight;
+
+	public Light[] lights;
+
+	private int baseLightIntensity = 2;
 
 
 	// CLASS METHODS
@@ -30,13 +35,16 @@ public class Searchlight : MonoBehaviour {
 
 		switch (numberOfLightTypesUnlocked) {
 		case 1:
-			lightObject.intensity = 2;
+			lightObject.intensity = baseLightIntensity;
+			centerLight.intensity = baseLightIntensity*2;
 			break;
 		case 2:
-			lightObject.intensity = 4;
+			lightObject.intensity = baseLightIntensity*2;
+			centerLight.intensity = baseLightIntensity*4;
 			break;
 		case 3:
-			lightObject.intensity = 8;
+			lightObject.intensity = baseLightIntensity*4;
+			centerLight.intensity = baseLightIntensity*16;
 			break;
 		}
 	}
@@ -44,13 +52,10 @@ public class Searchlight : MonoBehaviour {
 	public void toggleOnOff()								
 		// toggles the searchlight on and off
 	{
-		if (isOn) {
-			isOn = false;
-			lightObject.enabled = false;
-
-		} else {
-			isOn = true;
-			lightObject.enabled = true;
+		isOn = !isOn;
+			
+		foreach (Light light in lights) {
+			light.enabled = !light.enabled;
 		}
 	}
 
@@ -87,12 +92,15 @@ public class Searchlight : MonoBehaviour {
 		switch (lightType) {
 		case LightType.normal:
 			lightObject.color = Color.white;
+			centerLight.color = Color.white;
 			break;
 		case LightType.bio:
 			lightObject.color = Color.blue;
+			centerLight.color = Color.blue;
 			break;
 		case LightType.temple:
 			lightObject.color = Color.green;
+			centerLight.color = Color.green;
 			break;
 		}
 

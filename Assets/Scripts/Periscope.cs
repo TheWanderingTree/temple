@@ -11,7 +11,7 @@ public class Periscope : Singleton<Periscope> {
 	public Direction DirectionChunk;
 	public int bearing;									// Compass bearing the periscope is facing (N, NE, E, SE, S, SW, W, NW)
 	public int chosenBearing; 							// Bearing chosen for exploration
-	public int audioPreviewThreshold = 5;					// How many degrees away from landmark at which audio begins playing
+
 
 	// CLASS METHODS
 	
@@ -49,6 +49,7 @@ public class Periscope : Singleton<Periscope> {
 			else { bearing = 0; }
 
 			UpdateUI.Instance.bearingIndicator.transform.Rotate(0,0,-1);
+			Camera.main.transform.Rotate(0,1,0);
 
 
 		} else if (Input.GetKey("left")) {
@@ -57,6 +58,7 @@ public class Periscope : Singleton<Periscope> {
 			else { bearing = 359; }
 
 			UpdateUI.Instance.bearingIndicator.transform.Rotate(0,0,1);
+			Camera.main.transform.Rotate(0,-1,0);
 
 		}
 
