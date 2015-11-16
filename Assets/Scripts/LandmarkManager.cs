@@ -24,9 +24,9 @@ public class Landmark : IComparable<Landmark> {
 
 	public enum Direction { N, NE, E, SE, S, SW, W, NW }		// Enumeration for compass directions
 	public Direction DirectionChunk;							// Subdivision of compass rose covering 45 degrees
-	public int Bearing;									// Compass bearing the landmark is located along (N, NE, E, SE, S, SW, W, NW)
+	public int Bearing;											// Compass bearing the landmark is located along (N, NE, E, SE, S, SW, W, NW)
 
-	public AudioClip AudioPreview;								// Sound effect associated with the landmark in periscope view
+	public uint? AudioEventName;								// Sound effect associated with the landmark in periscope view
 
 	// CLASS CONSTRUCTORS
 
@@ -37,12 +37,12 @@ public class Landmark : IComparable<Landmark> {
 		Tier = tier;
 	}
 
-	public Landmark( string title, string description, int tier, AudioClip audioPreview )
+	public Landmark( string title, string description, int tier, uint audioEventName )
 	{
 		Title = title;
 		Description = description;
 		Tier = tier;
-		AudioPreview = audioPreview;
+		AudioEventName = audioEventName;
 	}
 
 
@@ -274,13 +274,11 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 
 	void Start () {
 
-		AudioClip wreckAudio = (AudioClip)Resources.Load ("test1");
-
 		Landmark wreck = new Landmark(
 			"Wreck" ,
 			"Get wrecked at a wrecked ship." ,
 			1,
-			wreckAudio
+			AK.EVENTS.PREVIEWWRECK
 			);
 		
 		
@@ -305,7 +303,8 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 		Landmark seamount = new Landmark(
 			"Seamount" ,
 			"An underwater mountain." ,
-			1 
+			1,
+			AK.EVENTS.PREVIEWSEAMOUNT
 			);
 
 		Landmark whitesmokers = new Landmark(

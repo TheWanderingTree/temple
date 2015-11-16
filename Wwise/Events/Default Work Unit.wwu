@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{24B1F53C-4C44-4707-B392-FEEA7A3B1A9C}" SchemaVersion="70">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{24B1F53C-4C44-4707-B392-FEEA7A3B1A9C}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="previewSeamount" ID="{00CF6C07-27D6-4097-9162-31E77D3859F2}">
+					<ChildrenList>
+						<Action Name="Play" ID="{57ED9FC3-AF83-4897-939B-A5488F84A979}" ShortID="1004782830" Type="Play" Scope="One" Global="false">
+							<PropertyList>
+								<Property Name="FadeCurve" Type="int16" Value="5"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+							</PropertyList>
+							<ElementList>
+								<Element ID="{F0D564CA-9F36-4CCE-A2EB-DC1097AE8939}" Global="false">
+									<ObjectRef Name="previewSeamount" ID="{7DE508A1-7A53-457C-8954-7F68A4E692DB}" WorkUnitID="{2BBA12CD-41DA-4BE2-8712-412BA6DEBBF8}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="previewWreck" ID="{A5A63444-1308-4F60-8DA7-E6BFB4696574}">
+					<ChildrenList>
+						<Action Name="Play" ID="{2521798C-43D5-4551-989F-2E756FE38B4D}" ShortID="562838789" Type="Play" Scope="One" Global="false">
+							<PropertyList>
+								<Property Name="FadeCurve" Type="int16" Value="5"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+							</PropertyList>
+							<ElementList>
+								<Element ID="{F3E34DFE-ED0F-4FA9-828F-A64A39C9CC42}" Global="false">
+									<ObjectRef Name="previewWreck" ID="{678F76DA-3CC1-44DC-BF7C-2144BA76662D}" WorkUnitID="{2BBA12CD-41DA-4BE2-8712-412BA6DEBBF8}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

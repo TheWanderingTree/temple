@@ -1,0 +1,12 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1341998471	previewWreck			\Default Work Unit\previewWreck	
+	3384173999	previewSeamount			\Default Work Unit\previewSeamount	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1240670792	Distance			\Default Work Unit\Distance	
+	1437246667	Azimuth			\Default Work Unit\Azimuth	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	18623334	previewSeamount	Y:\Desktop\temple\Wwise\.cache\Mac\SFX\test2_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\previewSeamount		2880060
+	705674426	previewWreck	Y:\Desktop\temple\Wwise\.cache\Mac\SFX\test1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\previewWreck		264472
+

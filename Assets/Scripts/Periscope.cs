@@ -9,7 +9,7 @@ public class Periscope : Singleton<Periscope> {
 
 	public enum Direction { N, NE, E, SE, S, SW, W, NW }		// Enumeration for compass directions
 	public Direction DirectionChunk;
-	public int bearing;									// Compass bearing the periscope is facing (N, NE, E, SE, S, SW, W, NW)
+	public int bearing;									// Compass bearing the periscope is facing (0-360)
 	public int chosenBearing; 							// Bearing chosen for exploration
 
 
@@ -21,8 +21,8 @@ public class Periscope : Singleton<Periscope> {
 		if (Input.GetKeyDown ("up")) {
 			if (tier < 3) {
 				tier++;
+				UpdateUI.Instance.updateLandmarks();
 				UpdateUI.Instance.displayLandmarks ();
-				UpdateUI.Instance.playAudioPreview ();
 				UpdateUI.Instance.updateDebugText ();
 			}
 		}
@@ -30,8 +30,8 @@ public class Periscope : Singleton<Periscope> {
 		if (Input.GetKeyDown ("down")) {
 			if (tier > 1) {
 				tier--;
+				UpdateUI.Instance.updateLandmarks();
 				UpdateUI.Instance.displayLandmarks ();
-				UpdateUI.Instance.playAudioPreview ();
 				UpdateUI.Instance.updateDebugText ();
 			}
 		}
@@ -62,7 +62,6 @@ public class Periscope : Singleton<Periscope> {
 
 		}
 
-		UpdateUI.Instance.playAudioPreview ();
 		UpdateUI.Instance.updateDebugText ();
 
 	}

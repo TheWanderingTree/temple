@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{2BBA12CD-41DA-4BE2-8712-412BA6DEBBF8}" SchemaVersion="70">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{2BBA12CD-41DA-4BE2-8712-412BA6DEBBF8}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="previewSeamount" ID="{7DE508A1-7A53-457C-8954-7F68A4E692DB}" ShortID="678653311" Type="SoundFX">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{D291964C-9316-4E08-9FC9-B063A91E49CA}" ShortID="412304180">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="Azimuth" ID="{BA4C305E-FA28-4D10-B2FC-7EB432E1A6B3}" WorkUnitID="{26097C94-7297-4CB1-A7C3-3F69A4EE0260}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{AB54DA0C-A573-45B9-94CA-DB3E888F2A2D}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>-180</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>-15</XPos>
+												<YPos>-200</YPos>
+												<Flags>0</Flags>
+												<SegmentShape>SCurve</SegmentShape>
+											</Point>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>0</YPos>
+												<Flags>0</Flags>
+												<SegmentShape>SCurve</SegmentShape>
+											</Point>
+											<Point>
+												<XPos>15</XPos>
+												<YPos>-200</YPos>
+												<Flags>0</Flags>
+											</Point>
+											<Point>
+												<XPos>180</XPos>
+												<YPos>-200</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+								<RTPC Name="" ID="{2E010456-4758-4330-A8F2-894C38EAFCB9}" ShortID="70041709">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="Distance" ID="{7A78A0A4-A57D-4CE9-B08F-7858EBA1278E}" WorkUnitID="{26097C94-7297-4CB1-A7C3-3F69A4EE0260}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{DF291AB5-2B6A-43EA-90DD-45170A748F1C}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>0</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>25.11112</XPos>
+												<YPos>0.10309</YPos>
+												<Flags>0</Flags>
+											</Point>
+											<Point>
+												<XPos>150</XPos>
+												<YPos>-8.99257</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{A3D4572B-E31C-40EE-9B49-EBD9D7309F16}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B9088B7B-79F4-4035-A450-170F06EAD594}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="test2" ID="{78263B25-1FD8-40ED-B04A-D1DA3B526A8B}" ShortID="18623334">
+							<Language>SFX</Language>
+							<AudioFile>test2.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="test2" ID="{78263B25-1FD8-40ED-B04A-D1DA3B526A8B}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="previewWreck" ID="{678F76DA-3CC1-44DC-BF7C-2144BA76662D}" ShortID="369424408" Type="SoundFX">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{1A3CDB32-3DF9-4B7D-BE98-6696178DF165}" ShortID="762054223">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="Distance" ID="{7A78A0A4-A57D-4CE9-B08F-7858EBA1278E}" WorkUnitID="{26097C94-7297-4CB1-A7C3-3F69A4EE0260}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{6FAF368C-D6A5-4819-A48B-3313CA088533}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>0</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>25.11112</XPos>
+												<YPos>0.103090000000009</YPos>
+												<Flags>0</Flags>
+											</Point>
+											<Point>
+												<XPos>150</XPos>
+												<YPos>-8.99257</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+								<RTPC Name="" ID="{B6CBEFD9-3BA7-4704-AF5F-8828AD12E551}" ShortID="571195626">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="Azimuth" ID="{BA4C305E-FA28-4D10-B2FC-7EB432E1A6B3}" WorkUnitID="{26097C94-7297-4CB1-A7C3-3F69A4EE0260}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{2352BCD6-94A8-4D6E-AD22-8B35CC76C5A7}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>-180</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>-15</XPos>
+												<YPos>-200</YPos>
+												<Flags>0</Flags>
+												<SegmentShape>SCurve</SegmentShape>
+											</Point>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>0</YPos>
+												<Flags>0</Flags>
+												<SegmentShape>SCurve</SegmentShape>
+											</Point>
+											<Point>
+												<XPos>15</XPos>
+												<YPos>-200</YPos>
+												<Flags>0</Flags>
+											</Point>
+											<Point>
+												<XPos>180</XPos>
+												<YPos>-200</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{A3D4572B-E31C-40EE-9B49-EBD9D7309F16}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B9088B7B-79F4-4035-A450-170F06EAD594}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="test1" ID="{C022FE05-5DC0-4CDF-8AE7-9E49DC07E5DD}" ShortID="705674426">
+							<Language>SFX</Language>
+							<AudioFile>test1.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="test1" ID="{C022FE05-5DC0-4CDF-8AE7-9E49DC07E5DD}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="10" SoundbankVersion="113">
+	<RootPaths>
+		<ProjectRoot>/Users/sorenlaulainen/Library/Application Support/Wwise/Bottles/wwise/dosdevices/y:/Desktop/temple/Wwise/</ProjectRoot>
+		<SourceFilesRoot>/Users/sorenlaulainen/Library/Application Support/Wwise/Bottles/wwise/dosdevices/y:/Desktop/temple/Wwise/.cache/Mac/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/sorenlaulainen/Library/Application Support/Wwise/Bottles/wwise/dosdevices/y:/Desktop/temple/Wwise/GeneratedSoundBanks/Mac/</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>/Users/sorenlaulainen/Library/Application Support/Wwise/Bottles/wwise/dosdevices/y:/Desktop/temple/Wwise/GeneratedSoundBanks/Mac/</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3161908922" Language="SFX">
+			<ShortName>MAIN</ShortName>
+			<Path>MAIN.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3384173999" Name="previewSeamount"/>
+				<Event Id="1341998471" Name="previewWreck"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="18623334" Language="SFX">
+					<ShortName>test2.wav</ShortName>
+					<Path>SFX/test2_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="705674426" Language="SFX">
+					<ShortName>test1.wav</ShortName>
+					<Path>SFX/test1_4B8CC0C5.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

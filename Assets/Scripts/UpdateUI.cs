@@ -24,7 +24,6 @@ public class UpdateUI : Singleton<UpdateUI> {
 	private GameObject landmarkTextObject;
 	private GameObject sphere;
 	private List<Landmark> chosenLandmarks;
-	private int audioPreviewThreshold = 5;					// How many degrees away from landmark at which audio begins playing
 
 	public static void PolarToCartesian(float radius, float degrees, float elevation, out Vector3 outCart){
 		float polar = degrees * Mathf.Deg2Rad;
@@ -34,20 +33,41 @@ public class UpdateUI : Singleton<UpdateUI> {
 		outCart.x = a * Mathf.Sin (polar);
 	}
 
-	public void displayLandmarks() {
-
+	public void updateLandmarks() {
+	
 		//remove all current UI elements
 		foreach (Transform child in mapPanel.transform) {
 			GameObject.Destroy(child.gameObject);
 		}
-
+		
 		if (GameObject.FindWithTag("Sphere")) {
 			GameObject[] spheres = GameObject.FindGameObjectsWithTag ("Sphere");
-
+			
 			foreach (GameObject sphere in spheres) {
+
+				if (sphere.GetComponent<AkAmbient>() != null) { // if the sphere has an audio event on it
+
+					//Get the AKAmbient component on the sphere
+					AkAmbient akAmbientComponent = sphere.GetComponent<AkAmbient>();
+					akAmbientComponent.enableActionOnEvent = true;
+
+					//Get the event
+					uint eventUINT = (uint)akAmbientComponent.eventID;
+					
+					//Stop the event
+					AkSoundEngine.ExecuteActionOnEvent(eventUINT, AkActionOnEventType.AkActionOnEventType_Stop, sphere, 400, AkCurveInterpolation.AkCurveInterpolation_SCurve);
+				}
+
+				//Destroy the sphere
 				GameObject.Destroy(sphere.gameObject);
 			}
 		}
+	
+	}
+
+	public void displayLandmarks() {
+
+
 
 		//pull up the list of landmarks for the chosen tier
 		chosenLandmarks = LandmarkManager.Instance.getLandmarksFromTier (Periscope.Instance.tier );
@@ -67,6 +87,7 @@ public class UpdateUI : Singleton<UpdateUI> {
 
 			GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 			sphere.tag = "Sphere";
+			sphere.name = landmark.Title;
 			sphere.transform.position = new Vector3(chosenVector.x/2,-0.85f,chosenVector.y/2);
 			
 			//create a new UI text object and make it a child of the map panel
@@ -92,84 +113,33 @@ public class UpdateUI : Singleton<UpdateUI> {
 			//set the text
 			textComponent.text = "•";
 
-			//create an audio source component on the text object
-			AudioSource audioSourceComponent = landmarkTextObject.AddComponent<AudioSource>();
-			audioSourceComponent.clip = landmark.AudioPreview;
-			audioSourceComponent.loop = true;
+			if (landmark.AudioEventName != null) { // if the landmark has an audio preview event
 
-		}
+				//create an AK GameObj component on the sphere
+				AkGameObj akGameObjComponent = sphere.AddComponent<AkGameObj>();
+				akGameObjComponent.isEnvironmentAware = false;
 
-	}
+				//create an AK Ambient component on the sphere
+				AkAmbient akAmbientComponent = sphere.AddComponent<AkAmbient>();
 
-	IEnumerator FadeIn() {
-		
-		AudioSource thisAudioC = landmarkTextObject.GetComponent<AudioSource>();
-		float currentVol = thisAudioC.volume;
-		for (float f = currentVol; f <= 1; f += 0.05f) {
-			thisAudioC.volume = f;
-			yield return new WaitForSeconds(0.05f);
-		}
-	}
-
-	IEnumerator FadeOut() {
-		
-		AudioSource thisAudioC = landmarkTextObject.GetComponent<AudioSource>();
-		float currentVol = thisAudioC.volume;
-		for (float f = currentVol; f >= 0; f -= 0.05f) {
-			thisAudioC.volume = f;
-			yield return new WaitForSeconds(0.05f);
-		}
-		thisAudioC.Stop ();
-	}
-
-
-	public void playAudioPreview()
-		// plays sound effect(s) associated with landmark(s) along the current bearing
-	{
-
-		chosenLandmarks = LandmarkManager.Instance.getLandmarksFromTier (Periscope.Instance.tier );
-
-		foreach (Landmark landmark in chosenLandmarks) {
-			
-			//find the audio source for that landmark
-			GameObject landmarkTextObject = GameObject.Find (landmark.Title);
-			AudioSource audioSourceComponent = landmarkTextObject.GetComponent<AudioSource>();
-			
-			//play audio if periscope is facing the landmark
-			if (
-				(Periscope.Instance.bearing >= landmark.Bearing - audioPreviewThreshold) 
-				&& 
-				(Periscope.Instance.bearing <= landmark.Bearing + audioPreviewThreshold)) {
-					if (audioSourceComponent.isPlaying == false) {
-						audioSourceComponent.Play ();
-						audioSourceComponent.volume = 0;
-						StartCoroutine("FadeIn");
-					}
-			} else {
-				if (audioSourceComponent.isPlaying == true) {
-					StartCoroutine("FadeOut");
-
-				}
+				//assign the landmark's event ID to the AK Ambient component
+				akAmbientComponent.eventID = (int)landmark.AudioEventName;
 			}
-			
 		}
+
 	}
-
-
 
 	public void updateDebugText() 
 	// updates the debug text objects
 	{
 		bearingLabel.text = "Bearing: " + Periscope.Instance.bearing.ToString ();
 		tierLabel.text = "Tier: " + Periscope.Instance.tier.ToString ();
+		phaseLabel.text = "Game Phase: " + GameManager.Instance.Phase.ToString();
 	}
 
 	// Use this for initialization
 	void Start () {
-		phaseLabel.text = "Game Phase: " + GameManager.Instance.Phase.ToString();
-
 		displayLandmarks ();
-		playAudioPreview ();
 		updateDebugText ();
 	
 
