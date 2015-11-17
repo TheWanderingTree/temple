@@ -6,7 +6,11 @@
 				<SoundBank Name="MAIN" ID="{93C8342D-8084-4B30-BBE3-3E66CBD57920}">
 					<ObjectInclusionList>
 						<ObjectRef Name="previewSeamount" ID="{00CF6C07-27D6-4097-9162-31E77D3859F2}" WorkUnitID="{24B1F53C-4C44-4707-B392-FEEA7A3B1A9C}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="previewCave" ID="{3557CD1D-C4BF-4BBE-9B34-B5A4FF63785D}" WorkUnitID="{24B1F53C-4C44-4707-B392-FEEA7A3B1A9C}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="previewWreck" ID="{A5A63444-1308-4F60-8DA7-E6BFB4696574}" WorkUnitID="{24B1F53C-4C44-4707-B392-FEEA7A3B1A9C}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="previewNothing" ID="{DEE48351-424F-4D20-80C2-16E5BA2F9878}" WorkUnitID="{24B1F53C-4C44-4707-B392-FEEA7A3B1A9C}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="previewPlateau" ID="{933EEE59-714C-4B90-BBE7-BD44442761DC}" WorkUnitID="{24B1F53C-4C44-4707-B392-FEEA7A3B1A9C}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="previewWell" ID="{AB09C9C4-F2FC-4DE9-BF96-EE3A5B2EA8E5}" WorkUnitID="{24B1F53C-4C44-4707-B392-FEEA7A3B1A9C}" Filter="7" Origin="Manual"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

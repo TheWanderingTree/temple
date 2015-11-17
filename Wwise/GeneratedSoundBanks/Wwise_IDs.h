@@ -13,9 +13,28 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID PREVIEWCAVE = 2649092420U;
+        static const AkUniqueID PREVIEWNOTHING = 572514794U;
+        static const AkUniqueID PREVIEWPLATEAU = 2161215495U;
         static const AkUniqueID PREVIEWSEAMOUNT = 3384173999U;
+        static const AkUniqueID PREVIEWWELL = 99988447U;
         static const AkUniqueID PREVIEWWRECK = 1341998471U;
     } // namespace EVENTS
+
+    namespace SWITCHES
+    {
+        namespace AMBSTRINGSWITCH
+        {
+            static const AkUniqueID GROUP = 451257820U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID AMB = 1117531639U;
+                static const AkUniqueID STRINGS = 3363523641U;
+            } // namespace SWITCH
+        } // namespace AMBSTRINGSWITCH
+
+    } // namespace SWITCHES
 
     namespace GAME_PARAMETERS
     {

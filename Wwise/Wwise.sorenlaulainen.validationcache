@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ValidationCache Version="1" SchemaVersion="70">
-	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
+	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="2904647296" DateHigh="30482499"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Actor-Mixer Hierarchy\Factory SoundSeed Air Objects.wwu" DateLow="2778374144" DateHigh="30479861"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Actor-Mixer Hierarchy\Factory Synth One.wwu" DateLow="2778374144" DateHigh="30479861"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Attenuations\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
@@ -21,8 +21,8 @@
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Effects\Factory iZotope Multiband Distortion.wwu" DateLow="2778374144" DateHigh="30479861"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Effects\Factory iZotope Singleband Distortion.wwu" DateLow="2778374144" DateHigh="30479861"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Effects\Factory McDSP Effects.wwu" DateLow="2778374144" DateHigh="30479861"/>
-	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Events\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
-	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Game Parameters\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
+	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Events\Default Work Unit.wwu" DateLow="3819614592" DateHigh="30482498"/>
+	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Game Parameters\Default Work Unit.wwu" DateLow="1549614592" DateHigh="30482498"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Game Parameters\Factory SoundSeed Air Game Syncs.wwu" DateLow="2778374144" DateHigh="30479861"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
@@ -31,10 +31,11 @@
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Presets\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Queries\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Queries\Factory Queries.wwu" DateLow="2778374144" DateHigh="30479861"/>
-	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\SoundBanks\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
+	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\SoundBanks\Default Work Unit.wwu" DateLow="1549614592" DateHigh="30482498"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Soundcaster Sessions\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\States\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Switches\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
 	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Triggers\Default Work Unit.wwu" DateLow="4247521536" DateHigh="30482434"/>
-	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Wwise.wproj" DateLow="4247521536" DateHigh="30482434"/>
+	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Wwise.sorenlaulainen.wsettings" DateLow="1979680000" DateHigh="30482500"/>
+	<ValidationCacheItem File="Y:\Desktop\temple\Wwise\Wwise.wproj" DateLow="942554240" DateHigh="30482435"/>
 </ValidationCache>

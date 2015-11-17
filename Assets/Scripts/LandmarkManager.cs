@@ -297,7 +297,8 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 		Landmark plateau = new Landmark(
 			"Oceanic Plateau" ,
 			"A high plateau on the seafloor covered in whale carcasses." ,
-			1 
+			1,
+			AK.EVENTS.PREVIEWPLATEAU
 			);
 
 		Landmark seamount = new Landmark(
@@ -329,7 +330,8 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 		Landmark well = new Landmark(
 			"Well" ,
 			"A dark hole in the seafloor, about two meters wide." ,
-			1 
+			1,
+			AK.EVENTS.PREVIEWWELL
 			);
 		
 		Landmark torpedo = new Landmark(
@@ -341,7 +343,8 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 		Landmark nothing = new Landmark(
 			"Nothing" ,
 			"There is nothing here. Nothing at all." ,
-			1 
+			1,
+			AK.EVENTS.PREVIEWNOTHING
 			);
 		
 		Landmark oldsuit = new Landmark(
@@ -389,7 +392,8 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 		Landmark cave = new Landmark(
 			"Cave" ,
 			"Be a slave to the CAVE!" ,
-			2 
+			2,
+			AK.EVENTS.PREVIEWCAVE
 			);
 
 		wreck.Endgate = true; wreck.Distance = 300;

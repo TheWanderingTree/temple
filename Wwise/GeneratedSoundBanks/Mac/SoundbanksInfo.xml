@@ -19,13 +19,37 @@
 			<ShortName>MAIN</ShortName>
 			<Path>MAIN.bnk</Path>
 			<IncludedEvents>
+				<Event Id="2649092420" Name="previewCave"/>
+				<Event Id="572514794" Name="previewNothing"/>
+				<Event Id="2161215495" Name="previewPlateau"/>
 				<Event Id="3384173999" Name="previewSeamount"/>
+				<Event Id="99988447" Name="previewWell"/>
 				<Event Id="1341998471" Name="previewWreck"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="18623334" Language="SFX">
 					<ShortName>test2.wav</ShortName>
 					<Path>SFX/test2_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="63580490" Language="SFX">
+					<ShortName>00_deepwater_loop.wav</ShortName>
+					<Path>SFX/00_deepwater_loop_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="117671739" Language="SFX">
+					<ShortName>05_nothing_loop.wav</ShortName>
+					<Path>SFX/05_nothing_loop_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="209292514" Language="SFX">
+					<ShortName>04_hollow_loop.wav</ShortName>
+					<Path>SFX/04_hollow_loop_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="384195994" Language="SFX">
+					<ShortName>03_unidentified_loop.wav</ShortName>
+					<Path>SFX/03_unidentified_loop_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="455606088" Language="SFX">
+					<ShortName>02_lamentingwhales_loop.wav</ShortName>
+					<Path>SFX/02_lamentingwhales_loop_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="705674426" Language="SFX">
 					<ShortName>test1.wav</ShortName>
