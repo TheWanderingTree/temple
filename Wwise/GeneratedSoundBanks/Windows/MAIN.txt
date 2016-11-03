@@ -1,0 +1,28 @@
+Event	ID	Name			Wwise Object Path	Notes
+	99988447	previewWell			\Default Work Unit\LandmarkPreviews\previewWell	
+	572514794	previewNothing			\Default Work Unit\LandmarkPreviews\previewNothing	
+	1341998471	previewWreck			\Default Work Unit\LandmarkPreviews\previewWreck	
+	2161215495	previewPlateau			\Default Work Unit\LandmarkPreviews\previewPlateau	
+	2649092420	previewCave			\Default Work Unit\LandmarkPreviews\previewCave	
+	3384173999	previewSeamount			\Default Work Unit\LandmarkPreviews\previewSeamount	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	451257820	AmbStringSwitch			\Default Work Unit\AmbStringSwitch	
+
+Switch	ID	Name	Switch Group			Notes
+	1117531639	Amb	AmbStringSwitch			
+	3363523641	Strings	AmbStringSwitch			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1240670792	Distance			\Default Work Unit\Distance	
+	1437246667	Azimuth			\Default Work Unit\Azimuth	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	18623334	previewSeamount	Z:\Volumes\Projects\Repositories\temple\Wwise\.cache\Windows\SFX\test2_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewSeamount		2127948
+	63580490	nothingAmb	Z:\Volumes\Projects\Repositories\temple\Wwise\.cache\Windows\SFX\00_deepwater_loop_33E45D27.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\nothingSwitch\nothingAmb_Loop\nothingAmb		995488
+	117671739	nothingStrings	Z:\Volumes\Projects\Repositories\temple\Wwise\.cache\Windows\SFX\05_nothing_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\nothingSwitch\nothingStrings		1220208
+	209292514	previewCave	Z:\Volumes\Projects\Repositories\temple\Wwise\.cache\Windows\SFX\04_hollow_loop_12F9BD65.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewCave		2299752
+	384195994	previewWell	Z:\Volumes\Projects\Repositories\temple\Wwise\.cache\Windows\SFX\03_unidentified_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewWell		2341052
+	455606088	previewPlateau	Z:\Volumes\Projects\Repositories\temple\Wwise\.cache\Windows\SFX\02_lamentingwhales_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewPlateau		4954508
+	705674426	previewWreck	Z:\Volumes\Projects\Repositories\temple\Wwise\.cache\Windows\SFX\test1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewWreck		264458
+

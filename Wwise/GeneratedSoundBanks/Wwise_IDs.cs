@@ -10,20 +10,25 @@ public class AK
         public static uint PREVIEWWRECK = 1341998471U;
     } // public class EVENTS
 
+    public class SWITCHES
+    {
+        public class AMBSTRINGSWITCH
+        {
+            public static uint GROUP = 451257820U;
+
+            public class SWITCH
+            {
+                public static uint AMB = 1117531639U;
+                public static uint STRINGS = 3363523641U;
+            } // public class SWITCH
+        } // public class AMBSTRINGSWITCH
+
+    } // public class SWITCHES
+
     public class GAME_PARAMETERS
     {
         public static uint AZIMUTH = 1437246667U;
         public static uint DISTANCE = 1240670792U;
-        public static uint SS_AIR_FEAR = 1351367891U;
-        public static uint SS_AIR_FREEFALL = 3002758120U;
-        public static uint SS_AIR_FURY = 1029930033U;
-        public static uint SS_AIR_MONTH = 2648548617U;
-        public static uint SS_AIR_PRESENCE = 3847924954U;
-        public static uint SS_AIR_RPM = 822163944U;
-        public static uint SS_AIR_SIZE = 3074696722U;
-        public static uint SS_AIR_STORM = 3715662592U;
-        public static uint SS_AIR_TIMEOFDAY = 3203397129U;
-        public static uint SS_AIR_TURBULENCE = 4160247818U;
     } // public class GAME_PARAMETERS
 
     public class BANKS

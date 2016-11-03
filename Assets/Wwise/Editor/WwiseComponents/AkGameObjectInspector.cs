@@ -54,21 +54,31 @@ public class AkGameObjectInspector : Editor
     {           
 
 		GUILayout.BeginVertical("Box");
-		
-		bool applyPosOffset = m_AkGameObject.m_posOffsetData != null;
+
+		// Unity tries to construct a AkGameObjPositionOffsetData all the time. Need this ugly workaround
+		// to prevent it from doing this.
+        if (m_AkGameObject.m_positionOffsetData != null)
+        {
+            if(!m_AkGameObject.m_positionOffsetData.KeepMe)
+            {
+                m_AkGameObject.m_positionOffsetData = null;
+            }
+        }
+
+		bool applyPosOffset = m_AkGameObject.m_positionOffsetData != null;
 		applyPosOffset = EditorGUILayout.Toggle ("Apply Position Offset: ", applyPosOffset);
-		if(m_AkGameObject.m_posOffsetData == null && applyPosOffset)
+		if(m_AkGameObject.m_positionOffsetData == null && applyPosOffset)
 		{
-			m_AkGameObject.m_posOffsetData = ScriptableObject.CreateInstance<AkGameObjPosOffsetData>();
-		}
-		else if(!applyPosOffset)
+			m_AkGameObject.m_positionOffsetData = new AkGameObjPositionOffsetData(true);
+        }
+        else if(!applyPosOffset && m_AkGameObject.m_positionOffsetData != null)
 		{
-			m_AkGameObject.m_posOffsetData = null;
+			m_AkGameObject.m_positionOffsetData = null;
 		}
 
-		if (m_AkGameObject.m_posOffsetData != null) 
+		if (m_AkGameObject.m_positionOffsetData != null) 
 		{
-			m_AkGameObject.m_posOffsetData.positionOffset = EditorGUILayout.Vector3Field("Position Offset", m_AkGameObject.m_posOffsetData.positionOffset);
+			m_AkGameObject.m_positionOffsetData.positionOffset = EditorGUILayout.Vector3Field("Position Offset", m_AkGameObject.m_positionOffsetData.positionOffset);
 
 			GUILayout.Space(2);
 			
@@ -141,17 +151,17 @@ public class AkGameObjectInspector : Editor
 	      
     void OnSceneGUI()
     {
-        if (m_AkGameObject.m_posOffsetData == null)
+        if (m_AkGameObject.m_positionOffsetData == null)
             return;
 
         // Transform local offset to world coordinate
-        Vector3 pos = m_AkGameObject.transform.TransformPoint(m_AkGameObject.m_posOffsetData.positionOffset);
+        Vector3 pos = m_AkGameObject.transform.TransformPoint(m_AkGameObject.m_positionOffsetData.positionOffset);
 
         // Get new handle position
         pos = Handles.PositionHandle(pos, Quaternion.identity);
 
         // Transform wolrd offset to local coordintae
-        m_AkGameObject.m_posOffsetData.positionOffset = m_AkGameObject.transform.InverseTransformPoint(pos);
+        m_AkGameObject.m_positionOffsetData.positionOffset = m_AkGameObject.transform.InverseTransformPoint(pos);
 
         if (GUI.changed)
         {

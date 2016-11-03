@@ -15,7 +15,7 @@ public class AkBasePathGetter
 	{
         try
         {
-#if UNITY_METRO && !UNITY_EDITOR
+#if UNITY_WSA && !UNITY_EDITOR
             TypeInfo CustomNameGetter = null;
             CustomNameGetter = Type.GetType("AkCustomPlatformNameGetter").GetTypeInfo();
 #else
@@ -25,7 +25,7 @@ public class AkBasePathGetter
             if (CustomNameGetter != null)
             {
                 MethodInfo mi = null;
-#if UNITY_METRO && !UNITY_EDITOR
+#if UNITY_WSA && !UNITY_EDITOR
                 mi = CustomNameGetter.GetDeclaredMethod("GetPlatformName");
 #else
                 mi = CustomNameGetter.GetMethod("GetPlatformName");
@@ -65,6 +65,8 @@ public class AkBasePathGetter
 		platformSubDir = "XBoxOne";
 #elif UNITY_IOS
 		platformSubDir = "iOS";
+#elif UNITY_TVOS
+        platformSubDir = "iOS";
 #elif UNITY_ANDROID
 		platformSubDir = "Android";
 #elif UNITY_PS3
@@ -73,12 +75,10 @@ public class AkBasePathGetter
 		platformSubDir = "PS4";
 #elif UNITY_WP_8_1
         platformSubDir = "WindowsPhone";
-#elif UNITY_METRO
+#elif UNITY_WSA
 	    platformSubDir = "Windows";
 #elif UNITY_WIIU
 	    platformSubDir = "WiiUSW";
-#elif UNITY_WP8
-	    platformSubDir = "WindowsPhone";
 #elif UNITY_PSP2
 #if AK_ARCH_VITA_SW
         platformSubDir = "VitaSW";
@@ -129,7 +129,7 @@ public class AkBasePathGetter
         try
         {
             WwiseSettings Settings = WwiseSettings.LoadSettings();
-            string platformSubDir = Path.DirectorySeparatorChar == '/' ? "Mac" : "Windows";
+            string platformSubDir = GetPlatformName();
             string WwiseProjectFullPath = AkUtilities.GetFullPath(Application.dataPath, Settings.WwiseProjectPath);
             string SoundBankDest = AkUtilities.GetWwiseSoundBankDestinationFolder(platformSubDir, WwiseProjectFullPath);
             if (Path.GetPathRoot(SoundBankDest) == "")
@@ -162,7 +162,10 @@ public class AkBasePathGetter
 
     public static void FixSlashes(ref string path)
     {
-#if !UNITY_METRO
+        if (string.IsNullOrEmpty(path))
+            return;
+
+#if !UNITY_WSA
         string seperatorChar = Path.DirectorySeparatorChar.ToString();
         string badChar = string.Empty;
         if (Path.DirectorySeparatorChar == '/')
@@ -176,7 +179,7 @@ public class AkBasePathGetter
 #else
         string seperatorChar = "\\";
         string badChar = "/";
-#endif // #if !UNITY_METRO
+#endif // #if !UNITY_WSA
 
 
         path.Trim();
@@ -207,6 +210,8 @@ public class AkBasePathGetter
 
         if (basePathToSet == string.Empty || InitBnkFound == false)
         {
+	        Debug.Log("WwiseUnity: Looking for SoundBanks in " + basePathToSet);
+	
 #if !UNITY_EDITOR
             Debug.LogError("WwiseUnity: Could not locate the SoundBanks. Did you make sure to copy them to the StreamingAssets folder?");
 #else
@@ -214,8 +219,6 @@ public class AkBasePathGetter
 #endif
             return string.Empty;
         }
-
-        Debug.Log("WwiseUnity: Setting base SoundBank path to " + basePathToSet);
 
         return basePathToSet;
     }

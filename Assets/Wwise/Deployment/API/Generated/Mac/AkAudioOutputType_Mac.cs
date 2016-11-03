@@ -9,9 +9,11 @@
 
 
 public enum AkAudioOutputType {
-  AkOutput_Dummy = 1 << 2,
-  AkOutput_MergeToMain = 1 << 3,
-  AkOutput_Main = 1 << 4,
-  AkOutput_NumOutputs = 1 << 5
+  AkOutput_None = 0,
+  AkOutput_Dummy,
+  AkOutput_Main,
+  AkOutput_MergeToMain,
+  AkOutput_NumBuiltInOutputs,
+  AkOutput_Plugin
 }
 #endif // #if (UNITY_STANDALONE_OSX && !UNITY_EDITOR) || UNITY_EDITOR_OSX

@@ -27,15 +27,15 @@ public abstract class AkTriggerBase : MonoBehaviour
 	{
 
 		Type	baseType	= typeof(AkTriggerBase);        
-#if UNITY_METRO && !UNITY_EDITOR        
+#if UNITY_WSA && !UNITY_EDITOR        
         IEnumerable<TypeInfo> typeInfos = baseType.GetTypeInfo().Assembly.DefinedTypes;
 #else
-        Type[]  types       = baseType.Assembly.GetTypes(); // THIS WORKS ON WP8, not on Metro
+        Type[]  types       = baseType.Assembly.GetTypes();
 #endif
 
         Dictionary<uint, string> derivedTypes = new Dictionary<uint, string>();
 		
-#if UNITY_METRO && !UNITY_EDITOR        
+#if UNITY_WSA && !UNITY_EDITOR        
  		foreach(TypeInfo typeInfo in typeInfos)
 		{
             if(typeInfo.IsClass && (typeInfo.IsSubclassOf(baseType) || baseType.GetTypeInfo().IsAssignableFrom(typeInfo) && baseType != typeInfo.AsType()))

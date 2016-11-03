@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{2BBA12CD-41DA-4BE2-8712-412BA6DEBBF8}" SchemaVersion="70">
+<WwiseDocument Type="WorkUnit" ID="{2BBA12CD-41DA-4BE2-8712-412BA6DEBBF8}" SchemaVersion="72">
 	<AudioObjects>
 		<WorkUnit Name="Default Work Unit" ID="{2BBA12CD-41DA-4BE2-8712-412BA6DEBBF8}" PersistMode="Standalone">
 			<ChildrenList>
@@ -477,6 +477,9 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="04_hollow_loop" ID="{E7E9FCF8-8DC2-4BED-8F49-5F4CC3005B48}" ShortID="209292514">
+									<PropertyList>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>04_hollow_loop.wav</AudioFile>
 								</AudioFileSource>
@@ -498,73 +501,6 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="nothingAmb" ID="{7CFD16F3-92E3-432E-9537-2B12D9A8A776}" ShortID="3548684" Type="SoundFX">
-									<PropertyList>
-										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-										<Property Name="Volume" Type="Real64">
-											<RTPCList>
-												<RTPC Name="" ID="{4F2D12CA-C9CB-401E-9954-5B19DE328772}" ShortID="35825381">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Azimuth" ID="{BA4C305E-FA28-4D10-B2FC-7EB432E1A6B3}" WorkUnitID="{26097C94-7297-4CB1-A7C3-3F69A4EE0260}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{91A08D68-3353-423B-8F7E-A559B65B76AE}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="3"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>-180</XPos>
-																<YPos>0</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>-15</XPos>
-																<YPos>0</YPos>
-																<Flags>0</Flags>
-																<SegmentShape>SCurve</SegmentShape>
-															</Point>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>-200</YPos>
-																<Flags>0</Flags>
-																<SegmentShape>SCurve</SegmentShape>
-															</Point>
-															<Point>
-																<XPos>15</XPos>
-																<YPos>0</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>180</XPos>
-																<YPos>0</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{A3D4572B-E31C-40EE-9B49-EBD9D7309F16}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B9088B7B-79F4-4035-A450-170F06EAD594}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="00_deepwater_loop" ID="{98F8FE2D-FD32-478A-A404-F3CCF106259A}" ShortID="63580490">
-											<Language>SFX</Language>
-											<AudioFile>00_deepwater_loop.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="00_deepwater_loop" ID="{98F8FE2D-FD32-478A-A404-F3CCF106259A}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
 								<Sound Name="nothingStrings" ID="{FC3C7AF2-9A4A-4CAE-8B09-67F3045AEB92}" ShortID="697687162" Type="SoundFX">
 									<PropertyList>
 										<Property Name="InitialDelay" Type="Real64">
@@ -597,26 +533,149 @@
 										<ActiveSource Name="05_nothing_loop" ID="{6C2D674F-3E13-46EA-80D0-A16996D377B6}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<RandomSequenceContainer Name="nothingAmb_Loop" ID="{C1A51F36-6FA4-4D23-8E3C-3EC156BB49B7}" ShortID="115882017">
+									<PropertyList>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+										<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="1.4"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{BF44EFDA-BB7E-442D-B0B0-4C4D714C4E3B}" ShortID="799854072">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Azimuth" ID="{BA4C305E-FA28-4D10-B2FC-7EB432E1A6B3}" WorkUnitID="{26097C94-7297-4CB1-A7C3-3F69A4EE0260}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{20DE00A7-0E76-404A-B43E-AB38A5E96CCC}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>-180</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>-15</XPos>
+																<YPos>0</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Log3</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Exp3</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>15</XPos>
+																<YPos>0</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>180</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{A3D4572B-E31C-40EE-9B49-EBD9D7309F16}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B9088B7B-79F4-4035-A450-170F06EAD594}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="nothingAmb" ID="{7CFD16F3-92E3-432E-9537-2B12D9A8A776}" ShortID="3548684" Type="SoundFX">
+											<PropertyList>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{0026329E-4B24-40E3-AA6F-209EF5C4DD02}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="5"/>
+																	<Property Name="Min" Type="Real64" Value="-5"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{A3D4572B-E31C-40EE-9B49-EBD9D7309F16}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B9088B7B-79F4-4035-A450-170F06EAD594}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="00_deepwater_loop" ID="{98F8FE2D-FD32-478A-A404-F3CCF106259A}" ShortID="63580490">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0195597830671291"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.00977989153356518"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="3.29582344681126"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>00_deepwater_loop.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="00_deepwater_loop" ID="{98F8FE2D-FD32-478A-A404-F3CCF106259A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<Playlist>
+										<ItemRef Name="nothingAmb" ID="{7CFD16F3-92E3-432E-9537-2B12D9A8A776}"/>
+									</Playlist>
+								</RandomSequenceContainer>
 							</ChildrenList>
 							<GroupingInfo>
 								<GroupRef Name="AmbStringSwitch" ID="{BD009D3C-3476-4F0B-8404-D91FBFBD1572}"/>
 								<DefaultSwitchRef Name="Amb" ID="{56143F32-E538-4356-95E4-8A3C53682744}"/>
 								<GroupingBehaviorList>
 									<GroupingBehavior>
-										<ItemRef Name="nothingStrings" ID="{FC3C7AF2-9A4A-4CAE-8B09-67F3045AEB92}"/>
+										<ItemRef Name="nothingAmb_Loop" ID="{C1A51F36-6FA4-4D23-8E3C-3EC156BB49B7}"/>
 										<PropertyList>
+											<Property Name="ContinuePlay" Type="bool" Value="True"/>
 											<Property Name="FadeInTime" Type="Real64">
 												<ValueList>
-													<Value>10</Value>
+													<Value>0.5</Value>
+												</ValueList>
+											</Property>
+											<Property Name="FadeOutTime" Type="Real64">
+												<ValueList>
+													<Value>1.5</Value>
 												</ValueList>
 											</Property>
 										</PropertyList>
 									</GroupingBehavior>
 									<GroupingBehavior>
-										<ItemRef Name="nothingAmb" ID="{7CFD16F3-92E3-432E-9537-2B12D9A8A776}"/>
+										<ItemRef Name="nothingStrings" ID="{FC3C7AF2-9A4A-4CAE-8B09-67F3045AEB92}"/>
 										<PropertyList>
-											<Property Name="ContinuePlay" Type="bool" Value="True"/>
 											<Property Name="FadeInTime" Type="Real64">
+												<ValueList>
+													<Value>25</Value>
+												</ValueList>
+											</Property>
+											<Property Name="FadeOutTime" Type="Real64">
 												<ValueList>
 													<Value>0.5</Value>
 												</ValueList>
@@ -628,13 +687,12 @@
 									<Grouping>
 										<SwitchRef Name="Amb" ID="{56143F32-E538-4356-95E4-8A3C53682744}"/>
 										<ItemList>
-											<ItemRef Name="nothingAmb" ID="{7CFD16F3-92E3-432E-9537-2B12D9A8A776}"/>
+											<ItemRef Name="nothingAmb_Loop" ID="{C1A51F36-6FA4-4D23-8E3C-3EC156BB49B7}"/>
 										</ItemList>
 									</Grouping>
 									<Grouping>
 										<SwitchRef Name="Strings" ID="{641F783E-D6EC-4831-862C-097F999DCBF7}"/>
 										<ItemList>
-											<ItemRef Name="nothingAmb" ID="{7CFD16F3-92E3-432E-9537-2B12D9A8A776}"/>
 											<ItemRef Name="nothingStrings" ID="{FC3C7AF2-9A4A-4CAE-8B09-67F3045AEB92}"/>
 										</ItemList>
 									</Grouping>

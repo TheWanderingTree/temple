@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Linq;
@@ -375,7 +374,7 @@ public class LandmarkManager : Singleton<LandmarkManager>
 
 		Landmark trench = new Landmark(
 			"Trench" ,
-			"An undetonated torpedo." ,
+			"Like the canyon, but worse." ,
 			2 
 			);
 		

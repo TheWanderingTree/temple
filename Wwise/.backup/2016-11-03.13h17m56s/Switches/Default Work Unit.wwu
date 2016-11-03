@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{70B5E89D-3C8B-4E9C-B1DC-4A4A51574BBF}" SchemaVersion="70">
+	<Switches>
+		<WorkUnit Name="Default Work Unit" ID="{70B5E89D-3C8B-4E9C-B1DC-4A4A51574BBF}" PersistMode="Standalone">
+			<ChildrenList>
+				<SwitchGroup Name="AmbStringSwitch" ID="{BD009D3C-3476-4F0B-8404-D91FBFBD1572}">
+					<PropertyList>
+						<Property Name="UseGameParameter" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Switch Name="Amb" ID="{56143F32-E538-4356-95E4-8A3C53682744}"/>
+						<Switch Name="Strings" ID="{641F783E-D6EC-4831-862C-097F999DCBF7}"/>
+					</ChildrenList>
+					<SwitchOnRTPC>
+						<GameParameterRef Name="Azimuth" ID="{BA4C305E-FA28-4D10-B2FC-7EB432E1A6B3}"/>
+						<Curve Name="" ID="{F3CD66B6-289A-4DE5-8D92-E2C68608A38E}">
+							<PropertyList>
+								<Property Name="Flags" Type="int32" Value="65537"/>
+							</PropertyList>
+							<PointList>
+								<Point>
+									<XPos>-180</XPos>
+									<YPos>1</YPos>
+									<Flags>5</Flags>
+								</Point>
+								<Point>
+									<XPos>-7.7027</XPos>
+									<YPos>2</YPos>
+									<Flags>0</Flags>
+								</Point>
+								<Point>
+									<XPos>7.7027</XPos>
+									<YPos>1</YPos>
+									<Flags>0</Flags>
+								</Point>
+								<Point>
+									<XPos>180</XPos>
+									<YPos>0</YPos>
+									<Flags>37</Flags>
+								</Point>
+							</PointList>
+						</Curve>
+					</SwitchOnRTPC>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</Switches>
+</WwiseDocument>

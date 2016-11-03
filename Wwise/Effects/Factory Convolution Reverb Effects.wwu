@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{9D68BE5F-8CA6-43E0-BCE2-C7D59F63E582}" SchemaVersion="70">
+<WwiseDocument Type="WorkUnit" ID="{9D68BE5F-8CA6-43E0-BCE2-C7D59F63E582}" SchemaVersion="72">
 	<Effects>
 		<WorkUnit Name="Factory Convolution Reverb Effects" ID="{9D68BE5F-8CA6-43E0-BCE2-C7D59F63E582}" PersistMode="Standalone">
 			<ChildrenList>
@@ -28,7 +28,7 @@ IR Pre-delay: 6ms</Comment>
 														<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Halls\AK Berlin Teldex.wav"/>
 													</PropertyList>
 													<ConvertedFileIDList>
-														<File ID="689379105"/>
+														<File Platform="Mac" ID="689379105"/>
 													</ConvertedFileIDList>
 												</PluginMediaSource>
 											</ChildrenList>
@@ -374,7 +374,7 @@ IR Pre-delay: 9ms
 														<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Exteriors\AK Hamburg Volksdorfer Wald.wav"/>
 													</PropertyList>
 													<ConvertedFileIDList>
-														<File ID="299482527"/>
+														<File Platform="Mac" ID="299482527"/>
 													</ConvertedFileIDList>
 												</PluginMediaSource>
 											</ChildrenList>
@@ -461,7 +461,7 @@ IR Pre-delay: 8ms
 														<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Exteriors\AK Hamburg Stadtpark 01.wav"/>
 													</PropertyList>
 													<ConvertedFileIDList>
-														<File ID="1051291759"/>
+														<File Platform="Mac" ID="1051291759"/>
 													</ConvertedFileIDList>
 												</PluginMediaSource>
 											</ChildrenList>
@@ -638,7 +638,7 @@ IR Pre-delay: 4ms
 														<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Large Spaces\AK Hamburg Parkhaus.wav"/>
 													</PropertyList>
 													<ConvertedFileIDList>
-														<File ID="785966779"/>
+														<File Platform="Mac" ID="785966779"/>
 													</ConvertedFileIDList>
 												</PluginMediaSource>
 											</ChildrenList>
@@ -726,7 +726,7 @@ IR Pre-delay: 7ms
 														<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Large Spaces\AK Stair Way Hall.wav"/>
 													</PropertyList>
 													<ConvertedFileIDList>
-														<File ID="46969464"/>
+														<File Platform="Mac" ID="46969464"/>
 													</ConvertedFileIDList>
 												</PluginMediaSource>
 											</ChildrenList>
@@ -1407,7 +1407,7 @@ IR Pre-delay: 8ms
 														<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Rooms\AK Luna Studio.wav"/>
 													</PropertyList>
 													<ConvertedFileIDList>
-														<File ID="1012937349"/>
+														<File Platform="Mac" ID="1012937349"/>
 													</ConvertedFileIDList>
 												</PluginMediaSource>
 											</ChildrenList>
@@ -1494,7 +1494,7 @@ IR Pre-delay: 5ms </Comment>
 														<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Rooms\AK Hamburg Karl Schneider Halle.wav"/>
 													</PropertyList>
 													<ConvertedFileIDList>
-														<File ID="634339356"/>
+														<File Platform="Mac" ID="634339356"/>
 													</ConvertedFileIDList>
 												</PluginMediaSource>
 											</ChildrenList>
@@ -1763,7 +1763,7 @@ IR Pre-delay: 20ms
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Churches\AK St-Katharinen.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="99990636"/>
+												<File Platform="Mac" ID="99990636"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -1851,7 +1851,7 @@ IR Pre-delay: 20ms </Comment>
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Churches\AK St-Katharinen.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="101091315"/>
+												<File Platform="Mac" ID="101091315"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -2025,7 +2025,7 @@ IR Pre-delay: 20ms </Comment>
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Churches\AK St-Katharinen.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="8071170"/>
+												<File Platform="Mac" ID="8071170"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -2466,7 +2466,7 @@ IR Pre-delay: 8ms </Comment>
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Exteriors\AK Hamburg Stadtpark 01.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="584321412"/>
+												<File Platform="Mac" ID="584321412"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -2555,7 +2555,7 @@ IR Pre-delay: 9ms
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Exteriors\AK Hamburg Volksdorfer Wald.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="13000250"/>
+												<File Platform="Mac" ID="13000250"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -2652,7 +2652,7 @@ IR Pre-delay: 8ms
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Exteriors\AK Hamburg Stadtpark 01.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="152920738"/>
+												<File Platform="Mac" ID="152920738"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -2748,7 +2748,7 @@ IR Pre-delay: 3ms </Comment>
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Exteriors\AK Hamburg Stadtpark 02.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="433739779"/>
+												<File Platform="Mac" ID="433739779"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -2842,7 +2842,7 @@ IR Pre-delay: 3ms </Comment>
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Exteriors\AK Hamburg Stadtpark 02.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="195840689"/>
+												<File Platform="Mac" ID="195840689"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -3104,7 +3104,7 @@ IR Pre-delay: 6ms</Comment>
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Halls\AK Berlin Teldex.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="162018684"/>
+												<File Platform="Mac" ID="162018684"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -3404,7 +3404,7 @@ IR Pre-delay: 4ms
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Large Spaces\AK Hamburg Parkhaus.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="1010311289"/>
+												<File Platform="Mac" ID="1010311289"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -3763,7 +3763,7 @@ IR Pre-delay: 4ms </Comment>
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Rooms\AK Hamburg Echo Chamber.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="185425062"/>
+												<File Platform="Mac" ID="185425062"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -3853,7 +3853,7 @@ IR Pre-delay: 4ms
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Rooms\AK Hamburg Echo Chamber.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="538281099"/>
+												<File Platform="Mac" ID="538281099"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -4219,7 +4219,7 @@ IR Pre-delay: 8ms
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Rooms\AK Luna Studio.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="765420740"/>
+												<File Platform="Mac" ID="765420740"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -4307,7 +4307,7 @@ IR Pre-delay: 8ms
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Rooms\AK Luna Studio.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="749103418"/>
+												<File Platform="Mac" ID="749103418"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -4394,7 +4394,7 @@ IR Pre-delay: 5ms
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Rooms\AK Hamburg Karl Schneider Halle.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="237532661"/>
+												<File Platform="Mac" ID="237532661"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>
@@ -4484,7 +4484,7 @@ IR Pre-delay: 7ms
 												<Property Name="DataFileName" Type="string" Value="AK_Factory_IR\Large Spaces\AK Stair Way Hall.wav"/>
 											</PropertyList>
 											<ConvertedFileIDList>
-												<File ID="539027192"/>
+												<File Platform="Mac" ID="539027192"/>
 											</ConvertedFileIDList>
 										</PluginMediaSource>
 									</ChildrenList>

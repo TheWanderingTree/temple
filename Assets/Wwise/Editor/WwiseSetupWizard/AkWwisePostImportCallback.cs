@@ -3,46 +3,55 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 
-// This class gives us the necessary callback to show the wizard window once the package import is done
-// The file will be deleted after the first time setup, to avoid having a callback called each time
-// scripts are reloaded.
 [InitializeOnLoad]
 public class AkWwisePostImportCallback
 {
     static AkWwisePostImportCallback()
     {
         EditorApplication.hierarchyWindowChanged += CheckWwiseGlobalExistance;
+		EditorApplication.delayCall += RefreshCallback;
     }
 
 	[DidReloadScripts(100000000)]
 	static void RefreshCallback()
 	{
 		PostImportFunction();
-		RefreshPlugins();
-	}
-	
-	static void PostImportFunction()
+        if (File.Exists(Path.Combine(Application.dataPath, WwiseSettings.WwiseSettingsFilename)))
+        {
+			AkPluginActivator.Update();
+			AkPluginActivator.RefreshPlugins();
+
+#if UNITY_5
+       		// Check if platform is supported and installed
+            string Msg;
+            if (!CheckPlatform(out Msg))
+            {
+                EditorUtility.DisplayDialog("Warning", Msg, "OK");
+            }
+#endif
+        }
+    }
+
+    static void PostImportFunction()
     {
-		EditorApplication.hierarchyWindowChanged += CheckWwiseGlobalExistance;
-	
+        EditorApplication.hierarchyWindowChanged += CheckWwiseGlobalExistance;
+
         if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling)
         {
             return;
         }
 
-		// Do nothing in batch mode
-		string[] arguments = Environment.GetCommandLineArgs();
-		if( Array.IndexOf(arguments, "-nographics") != -1 )
-		{
-			return;
-		}
-		
-		try
+		// Do nothing in batch mode (unless when running the test suite in command mode).
+        string[] arguments = Environment.GetCommandLineArgs();
+		if (Array.IndexOf(arguments, "-nographics") != -1 && Environment.GetEnvironmentVariable("WWISE_UNITY_TESTSUITE") == null)
+        {
+            return;
+        }
+
+        try
 		{            
 			if (!File.Exists(Application.dataPath + Path.DirectorySeparatorChar + WwiseSettings.WwiseSettingsFilename))
 			{
@@ -57,7 +66,6 @@ public class AkWwisePostImportCallback
 
 			if( !string.IsNullOrEmpty(WwiseSetupWizard.Settings.WwiseProjectPath))
 			{
-				AkWwiseProjectInfo.Populate();
 				AkWwisePicker.PopulateTreeview();
 				if (AkWwiseProjectInfo.GetData().autoPopulateEnabled )
 				{
@@ -80,8 +88,54 @@ public class AkWwisePostImportCallback
 			EditorApplication.delayCall += DeletePopPicker;
 		}
 	}
-	
-	static void RefreshPlugins()
+
+#if UNITY_5
+    static bool CheckPlatform(out string Msg)
+    {
+        Msg = string.Empty;
+#if UNITY_WSA_8_0
+        Msg = "The Wwise Unity integration does not support the Windows Store 8.0 SDK.";
+        return false;
+#else
+        // Start by checking if the integration supports the platform
+        switch (EditorUserBuildSettings.activeBuildTarget)
+        {
+            case BuildTarget.BlackBerry:
+            case BuildTarget.PSM:
+            case BuildTarget.SamsungTV:
+            case BuildTarget.StandaloneGLESEmu:
+            case BuildTarget.Tizen:
+            case BuildTarget.WebGL:
+            case BuildTarget.WebPlayer:
+            case BuildTarget.WebPlayerStreamed:
+                Msg = "The Wwise Unity integration does not support this platform.";
+                return false;
+        }
+
+        // Then check if the integration is installed for this platform
+        PluginImporter[] importers = PluginImporter.GetImporters(EditorUserBuildSettings.activeBuildTarget);
+        bool found = false;
+        foreach (PluginImporter imp in importers)
+        {
+            if(imp.assetPath.Contains("AkSoundEngine"))
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if(!found)
+        {
+            Msg = "The Wwise Unity integration for the " + EditorUserBuildSettings.activeBuildTarget.ToString() + " platform is currently not installed.";
+            return false;
+        }
+
+        return true;
+#endif
+    }
+#endif
+
+    static void RefreshPlugins()
 	{
 #if !UNITY_5
 		// Check if there are some new platforms to install.
@@ -189,10 +243,15 @@ public class AkWwisePostImportCallback
     }
 	
 	static string s_CurrentScene = null;
-	static void CheckWwiseGlobalExistance()
+	static public void CheckWwiseGlobalExistance()
 	{
-        WwiseSettings settings = WwiseSettings.LoadSettings();		
+        WwiseSettings settings = WwiseSettings.LoadSettings();
+#if UNITY_5_0 || UNITY_5_1 || UNITY_5_2
         if (!settings.OldProject && (String.IsNullOrEmpty(EditorApplication.currentScene) || s_CurrentScene != EditorApplication.currentScene))
+#else
+        string activeSceneName = UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene().name;
+        if (!settings.OldProject && s_CurrentScene != activeSceneName)
+#endif
 		{			
 			// Look for a game object which has the initializer component
 			AkInitializer[] AkInitializers = UnityEngine.Object.FindObjectsOfType(typeof(AkInitializer)) as AkInitializer[];
@@ -240,14 +299,21 @@ public class AkWwisePostImportCallback
             }
             else
             {
-                if (settings.CreateWwiseListener == false)
+                foreach (AkAudioListener akListener in akAudioListeners)
                 {
-                    Component.DestroyImmediate(akAudioListeners[0]);
+                    if (settings.CreateWwiseListener == false && akListener.gameObject == Camera.main.gameObject)
+                    {
+                        Component.DestroyImmediate(akListener);
+                    }
                 }
             }
 
 
+#if UNITY_5_0 || UNITY_5_1 || UNITY_5_2
 			s_CurrentScene = EditorApplication.currentScene;
+#else
+			s_CurrentScene = activeSceneName;
+#endif
 		}
 	}
 }

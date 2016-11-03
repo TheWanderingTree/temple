@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 
 [AddComponentMenu("Wwise/AkGameObj")]
-///@brief This component represents a sound emitter in your scene.  It will track its position and other game syncs such as Switches, RTPC and environment values.  You can add this to any object that will emit sound.  Note that if it is not present, Wwise will add it automatically, with the default values, to any Unity Game Object that is passed to Wwise API (see AkSoundEngine.cs).  
+///@brief This component represents a sound emitter in your scene.  See \ref unity_use_AkGameObj. It will track its position and other game syncs such as Switches, RTPC and environment values.  You can add this to any object that will emit sound.  Note that if it is not present, Wwise will add it automatically, with the default values, to any Unity Game Object that is passed to Wwise.  
 /// \sa
 /// - \ref soundengine_gameobj
 /// - \ref soundengine_events
@@ -23,7 +23,7 @@ public class AkGameObj : MonoBehaviour
 	const int ALL_LISTENER_MASK = (1<<AkSoundEngine.AK_NUM_LISTENERS)-1;
 
 	/// When not set to null, the emitter position will be offset relative to the Game Object position by the Position Offset
-	public AkGameObjPosOffsetData m_posOffsetData = null;
+	public AkGameObjPositionOffsetData m_positionOffsetData = null;
 	
 	/// Is this object affected by Environment changes?  Set to false if not affected in order to save some useless calls.  Default is true.
     public bool isEnvironmentAware = true;
@@ -37,16 +37,16 @@ public class AkGameObj : MonoBehaviour
 	private bool isStaticObject = false;
 	private AkGameObjPositionData m_posData = null;
 
-	void Awake()
+    /// Cache the bounds to avoid calls to GetComponent()
+    private Collider m_Collider;
+
+    void Awake()
     {			
 		// If the object was marked as static, don't update its position to save cycles.
 #if UNITY_EDITOR
 		if (!UnityEditor.EditorApplication.isPlaying)	
 		{
-			//set enabled to true and is static to false to make sure that the update function is called in edit mode
-			//the correct value for the isStaticObject variable will be set when update is called
-			isStaticObject = false;
-			enabled = true;
+			UnityEditor.EditorApplication.update += this.CheckStaticStatus;
 			return;
 		}
 #endif 
@@ -54,6 +54,9 @@ public class AkGameObj : MonoBehaviour
 		{
 			m_posData = new AkGameObjPositionData();
 		}		
+		
+		// Cache the bounds to avoid calls to GetComponent()
+		m_Collider = GetComponent<Collider>();
 	
         //Register a Game Object in the sound engine, with its name.		
         AKRESULT res = AkSoundEngine.RegisterGameObj(gameObject, gameObject.name, (uint)(listenerMask & ALL_LISTENER_MASK));
@@ -70,7 +73,10 @@ public class AkGameObj : MonoBehaviour
                 position.z,
                 transform.forward.x,
                 transform.forward.y,
-                transform.forward.z);
+                transform.forward.z,
+				transform.up.x,
+				transform.up.y,
+				transform.up.z);
 
             if (isEnvironmentAware)
             {
@@ -80,7 +86,18 @@ public class AkGameObj : MonoBehaviour
             }
         }
     }
-
+	
+	private void CheckStaticStatus()
+	{
+#if UNITY_EDITOR
+		if (gameObject != null && isStaticObject != gameObject.isStatic)
+		{
+			isStaticObject = gameObject.isStatic;
+            UnityEditor.EditorUtility.SetDirty(this);
+        }	
+#endif
+	}
+	
 	void OnEnable()
 	{ 
 		//if enabled is set to false, then the update function wont be called
@@ -89,6 +106,12 @@ public class AkGameObj : MonoBehaviour
 	
     void OnDestroy()
     {
+#if UNITY_EDITOR
+		if (!UnityEditor.EditorApplication.isPlaying)	
+		{
+			UnityEditor.EditorApplication.update -= this.CheckStaticStatus;
+		}
+#endif
 		// We can't do the code in OnDestroy if the gameObj is unregistered, so do it now.		
 		AkUnityEventHandler[] eventHandlers = gameObject.GetComponents<AkUnityEventHandler>();
 		foreach( AkUnityEventHandler handler in eventHandlers )
@@ -116,30 +139,37 @@ public class AkGameObj : MonoBehaviour
 #if UNITY_EDITOR
 		if (!UnityEditor.EditorApplication.isPlaying)
 		{
-			isStaticObject = gameObject.isStatic;
 			return;
 		}
 #endif
+        if (isStaticObject)
+		{
+			return;
+		}
 
 	    // Get position with offset
 	    Vector3 position = GetPosition();
 
 		//Didn't move.  Do nothing.
-		if (m_posData.position == position && m_posData.forward == transform.forward)
+		if (m_posData.position == position && m_posData.forward == transform.forward && m_posData.up == transform.up)
 	        return;
 
 		m_posData.position = position;
 		m_posData.forward = transform.forward;            
+		m_posData.up = transform.up;            
 
 	    //Update position
-	    AkSoundEngine.SetObjectPosition(
-	        gameObject,
-	        position.x,
-	        position.y,
-	        position.z,
-	        transform.forward.x,
-	        transform.forward.y,
-	        transform.forward.z);
+            AkSoundEngine.SetObjectPosition(
+                gameObject,
+                position.x,
+                position.y,
+                position.z,
+                transform.forward.x,
+                transform.forward.y,
+                transform.forward.z,
+				transform.up.x,
+				transform.up.y,
+				transform.up.z);
 
 		if (isEnvironmentAware)
 		{
@@ -150,10 +180,10 @@ public class AkGameObj : MonoBehaviour
 	/// \return  The position.
 	public Vector3 GetPosition()
 	{
-		if (m_posOffsetData != null)
+		if (m_positionOffsetData != null)
 		{
 			// Get offset in world space
-			Vector3 worldOffset = transform.rotation * m_posOffsetData.positionOffset;
+			Vector3 worldOffset = transform.rotation * m_positionOffsetData.positionOffset;
 			
 			// Add offset to gameobject position
 			return transform.position + worldOffset;
@@ -184,7 +214,7 @@ public class AkGameObj : MonoBehaviour
 		{
 			m_envData.activePortals.Add(akPortal);
 			
-			for(int i = 0; i < 2; i++) 
+			for(int i = 0; i < akPortal.environments.Length; i++) 
 			{
 				if(akPortal.environments[i] != null)
 				{
@@ -232,12 +262,12 @@ public class AkGameObj : MonoBehaviour
 			AkEnvironmentPortal akPortal = other.gameObject.GetComponent<AkEnvironmentPortal>();
 			if(akPortal != null)
 			{
-				for(int i = 0; i < 2; i++)
+				for(int i = 0; i < akPortal.environments.Length; i++)
 				{
 					if(akPortal.environments[i] != null)
 					{
 						//We just exited a portal so we remove its environments only if we're not inside of them
-						if(!GetComponent<Collider>().bounds.Intersects(akPortal.environments[i].GetComponent<Collider>().bounds))
+						if(!m_Collider.bounds.Intersects(akPortal.environments[i].GetCollider().bounds))
 						{
 							m_envData.activeEnvironments.Remove(akPortal.environments[i]);
 						}
@@ -258,7 +288,7 @@ public class AkGameObj : MonoBehaviour
 				//we check if the environment belongs to a portal
 				for(int i = 0; i < m_envData.activePortals.Count; i++)
 				{
-					for(int j = 0; j < 2; j++)
+					for(int j = 0; j < m_envData.activePortals[i].environments.Length; j++)
 					{
 						if(akEnvironment == m_envData.activePortals[i].environments[j])
 						{
@@ -302,7 +332,7 @@ public class AkGameObj : MonoBehaviour
 		//we search for MAX_NB_ENVIRONMENTS(4 at this time) environments with the hightest priority that belong to a portal and add them to the auxSendArray
 		for(int i = 0; i < m_envData.activePortals.Count; i++)
 		{
-			for(int j = 0; j < 2; j++)
+			for(int j = 0; j < m_envData.activePortals[i].environments.Length; j++)
 			{
 				AkEnvironment env = m_envData.activePortals[i].environments[j];
 

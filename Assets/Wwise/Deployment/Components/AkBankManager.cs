@@ -12,16 +12,33 @@ using System;
 public class AkBankHandle
 {
     int m_RefCount = 0;
-    uint m_BankID;
+    public uint m_BankID;
 
+    public string relativeBasePath;
     public string bankName;
+    public bool decodeBank;
+    public bool saveDecodedBank;
 
     public AkCallbackManager.BankCallback bankCallback;
 
-    public AkBankHandle(string name)
+    public AkBankHandle(string name, bool decode, bool save)
     {
         bankName = name;
         bankCallback = null;
+        decodeBank = decode;
+		saveDecodedBank = save;
+
+#if !UNITY_EDITOR       
+        // Verify if the bank has already been decoded
+        if( decodeBank )
+		{
+			if( System.IO.File.Exists (System.IO.Path.Combine(AkInitializer.GetDecodedBankFullPath(), bankName + ".bnk")) )
+			{
+                relativeBasePath = AkInitializer.GetDecodedBankFolder();
+				decodeBank = false;
+			}
+		}
+#endif
     }
 
     public int RefCount
@@ -37,13 +54,77 @@ public class AkBankHandle
 	{
 		if (m_RefCount == 0)
 		{
-			AKRESULT res = AkSoundEngine.LoadBank(bankName, AkSoundEngine.AK_DEFAULT_POOL_ID, out m_BankID);
-			if (res != AKRESULT.AK_Success)
+			AKRESULT res = AKRESULT.AK_Fail;
+			
+			// There might be a case where we were asked to unload the SoundBank, but then asked immediately after to load that bank.
+			// If that happens, there will be a short amount of time where the ref count will be 0, but the bank will still be in memory.
+			// In that case, we do not want to unload the bank, so we have to remove it from the list of pending bank unloads.
+			if(AkBankManager.BanksToUnload.Contains(this))
+			{
+				AkBankManager.BanksToUnload.Remove(this);
+				IncRef();
+				return;
+			}
+
+#if UNITY_EDITOR
+            res = AkSoundEngine.LoadBank(bankName, AkSoundEngine.AK_DEFAULT_POOL_ID, out m_BankID);
+#else
+            if( decodeBank == false )
+			{
+                string basePathToSet = null;
+
+                if (!string.IsNullOrEmpty(relativeBasePath))
+                {
+                    basePathToSet = AkBasePathGetter.GetValidBasePath();
+                    if (string.IsNullOrEmpty(basePathToSet))
+                    {
+                        Debug.LogWarning("WwiseUnity: Bank " + bankName + " failed to load (could not obtain base path to set).");
+                        return;
+                    }
+
+                    res = AkSoundEngine.SetBasePath(System.IO.Path.Combine(basePathToSet, relativeBasePath));
+                }
+                else
+                {
+                    res = AKRESULT.AK_Success;
+                }
+
+                if (res == AKRESULT.AK_Success)
+                {
+				    res = AkSoundEngine.LoadBank(bankName, AkSoundEngine.AK_DEFAULT_POOL_ID, out m_BankID);
+	                
+					if (!string.IsNullOrEmpty(basePathToSet))
+	                {
+	                    AkSoundEngine.SetBasePath(basePathToSet);
+	                }
+				}
+			}
+			else
+			{
+				if( saveDecodedBank == true )
+				{
+					if( !System.IO.Directory.Exists (AkInitializer.GetDecodedBankFullPath()) )
+					{
+						try
+						{
+							System.IO.Directory.CreateDirectory(AkInitializer.GetDecodedBankFullPath());
+							System.IO.Directory.CreateDirectory(System.IO.Path.Combine(AkInitializer.GetDecodedBankFullPath(), AkInitializer.GetCurrentLanguage()));
+						}
+						catch
+						{
+							Debug.LogWarning("Could not create decoded SoundBank directory, decoded SoundBank will not be saved.");
+							saveDecodedBank = false;
+						}
+					}
+				}
+				res = AkSoundEngine.LoadAndDecodeBank(bankName, saveDecodedBank, out m_BankID);
+			}
+#endif
+            if (res != AKRESULT.AK_Success)
 			{
 				Debug.LogWarning("WwiseUnity: Bank " + bankName + " failed to load (" + res.ToString() + ")");
 			}
 		}
-
 		IncRef();  
 	}
 
@@ -52,6 +133,16 @@ public class AkBankHandle
 	{
 		if (m_RefCount == 0)
 		{
+			// There might be a case where we were asked to unload the SoundBank, but then asked immediately after to load that bank.
+			// If that happens, there will be a short amount of time where the ref count will be 0, but the bank will still be in memory.
+			// In that case, we do not want to unload the bank, so we have to remove it from the list of pending bank unloads.
+			if(AkBankManager.BanksToUnload.Contains(this))
+			{
+				AkBankManager.BanksToUnload.Remove(this);
+				IncRef();
+				return;
+			}
+			
 			bankCallback = callback;
 			AkSoundEngine.LoadBank(bankName, AkBankManager.GlobalBankCallback, this, AkSoundEngine.AK_DEFAULT_POOL_ID, out m_BankID);
 		}
@@ -68,7 +159,7 @@ public class AkBankHandle
         m_RefCount--;
         if (m_RefCount == 0)
         {
-            AkBankManager.BanksToUnload.Add(m_BankID);
+            AkBankManager.BanksToUnload.Add(this);
         }
     }
 }
@@ -77,14 +168,20 @@ public class AkBankHandle
 public static class AkBankManager
 {	
     static Dictionary<string, AkBankHandle> m_BankHandles = new Dictionary<string, AkBankHandle>();
-    static public List<uint> BanksToUnload = new List<uint>();
+    static public List<AkBankHandle> BanksToUnload = new List<AkBankHandle>();
     
 	static public void DoUnloadBanks()
 	{
-		foreach(uint bankID in BanksToUnload)
+		foreach(AkBankHandle bank in BanksToUnload)
 		{
-			Debug.Log("WwiseUnity: Unloading bank");
-			AkSoundEngine.UnloadBank(bankID, IntPtr.Zero, null, null);
+            if( bank.decodeBank == true && bank.saveDecodedBank == false )
+            {
+				AkSoundEngine.PrepareBank(PreparationType.Preparation_Unload, bank.m_BankID);
+            }
+            else
+            {
+				AkSoundEngine.UnloadBank(bank.m_BankID, IntPtr.Zero, null, null);
+			}
 		}
 		
 		BanksToUnload.Clear();
@@ -113,16 +210,16 @@ public static class AkBankManager
     }
 
 	/// Loads a bank.  This version blocks until the bank is loaded.  See AK::SoundEngine::LoadBank for more information
-    public static void LoadBank(string name)
+    public static void LoadBank(string name, bool decodeBank, bool saveDecodedBank)
     {
 		m_Mutex.WaitOne();
 		AkBankHandle handle = null;
 		if (!m_BankHandles.TryGetValue(name, out handle))
 		{
-			handle = new AkBankHandle(name);
+			handle = new AkBankHandle(name, decodeBank, saveDecodedBank);
 			m_BankHandles.Add(name, handle);			
 			m_Mutex.ReleaseMutex();
-        	handle.LoadBank();  		
+			handle.LoadBank();  		
 		}
 		else
 		{
@@ -139,7 +236,7 @@ public static class AkBankManager
 		AkBankHandle handle = null;
 		if (!m_BankHandles.TryGetValue(name, out handle))
 		{
-			handle = new AkBankHandle(name);
+			handle = new AkBankHandle(name, false, false);
 			m_BankHandles.Add(name, handle);			
 			m_Mutex.ReleaseMutex();
 			handle.LoadBankAsync(callback);  		

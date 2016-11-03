@@ -378,6 +378,7 @@ public class AkWwiseProjectData : ScriptableObject
 	public int defaultPoolSize = AkInitializer.c_DefaultPoolSize;
 	public int lowerPoolSize = AkInitializer.c_LowerPoolSize;
 	public int streamingPoolSize = AkInitializer.c_StreamingPoolSize;
+	public int preparePoolSize = AkInitializer.c_PreparePoolSize;
 	public float memoryCutoffThreshold = AkInitializer.c_MemoryCutoffThreshold;
 
 	public void SaveInitSettings(AkInitializer in_AkInit)
@@ -393,6 +394,7 @@ public class AkWwiseProjectData : ScriptableObject
 			defaultPoolSize =       in_AkInit.defaultPoolSize;
 			lowerPoolSize =         in_AkInit.lowerPoolSize;
 			streamingPoolSize =     in_AkInit.streamingPoolSize;
+			preparePoolSize =     	in_AkInit.preparePoolSize;
             memoryCutoffThreshold = in_AkInit.memoryCutoffThreshold;
             EditorUtility.SetDirty(this);
 		}
@@ -407,6 +409,7 @@ public class AkWwiseProjectData : ScriptableObject
 			in_AkInit.defaultPoolSize =         defaultPoolSize;
 			in_AkInit.lowerPoolSize =           lowerPoolSize;        
 			in_AkInit.streamingPoolSize =       streamingPoolSize;
+			in_AkInit.preparePoolSize =      	preparePoolSize;
             in_AkInit.memoryCutoffThreshold = memoryCutoffThreshold;
             EditorUtility.SetDirty(in_AkInit);
 		}
@@ -419,6 +422,7 @@ public class AkWwiseProjectData : ScriptableObject
             defaultPoolSize == in_AkInit.defaultPoolSize &&
             lowerPoolSize == in_AkInit.lowerPoolSize &&
             streamingPoolSize == in_AkInit.streamingPoolSize &&
+            preparePoolSize == in_AkInit.preparePoolSize &&
             memoryCutoffThreshold == in_AkInit.memoryCutoffThreshold;
 	}
 
