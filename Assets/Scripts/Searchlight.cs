@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
 
-public class Searchlight : MonoBehaviour {
+public class Searchlight : MonoBehaviour 
+{
 
 	// CLASS VARIABLES
 	
@@ -27,45 +26,51 @@ public class Searchlight : MonoBehaviour {
 	// CLASS METHODS
 
 	public void upgradeSearchlight()							
-	// unlocks a new light type for the searchlight
 	{
-		if (numberOfLightTypesUnlocked < 3) {
+	// unlocks a new light type for the searchlight
+		if (numberOfLightTypesUnlocked < 3) 
+		{
 			numberOfLightTypesUnlocked++;
 		}
 
-		switch (numberOfLightTypesUnlocked) {
-		case 1:
-			lightObject.intensity = baseLightIntensity;
-			centerLight.intensity = baseLightIntensity*2;
-			break;
-		case 2:
-			lightObject.intensity = baseLightIntensity*2;
-			centerLight.intensity = baseLightIntensity*4;
-			break;
-		case 3:
-			lightObject.intensity = baseLightIntensity*4;
-			centerLight.intensity = baseLightIntensity*16;
-			break;
+		switch (numberOfLightTypesUnlocked) 
+		{
+			case 1:
+				lightObject.intensity = baseLightIntensity;
+				centerLight.intensity = baseLightIntensity*2;
+				break;
+			case 2:
+				lightObject.intensity = baseLightIntensity*2;
+				centerLight.intensity = baseLightIntensity*4;
+				break;
+			case 3:
+				lightObject.intensity = baseLightIntensity*4;
+				centerLight.intensity = baseLightIntensity*16;
+				break;
 		}
 	}
 
 	public void toggleOnOff()								
-		// toggles the searchlight on and off
 	{
+	// toggles the searchlight on and off
 		isOn = !isOn;
 			
-		foreach (Light light in lights) {
+		foreach (Light light in lights) 
+		{
 			light.enabled = !light.enabled;
 		}
 	}
 
-	public void startTimer() {
+	public void startTimer() 
+	{
 	//starts the light-switch timer (lasts switchDuration)
 		startTime = Time.time;
 	}
 
-	public void checkTimer() {
-		if (Time.time > startTime + switchDuration) {
+	public void checkTimer() 
+	{
+		if (Time.time > startTime + switchDuration) 
+		{
 			switchLightType();
 			toggleOnOff();
 			resetTimer();
@@ -74,59 +79,64 @@ public class Searchlight : MonoBehaviour {
 		}
 	}
 
-	public void resetTimer() {
+	public void resetTimer() 
+	{
 		startTime = 0f;
 	}
 
 	public void switchLightType()								
-	// switches the searchlight's light type (if available)
 	{
+	// switches the searchlight's light type (if available)
 		int intLightType = (int)lightType;
 
-		if (intLightType < numberOfLightTypesUnlocked - 1) {
+		if (intLightType < numberOfLightTypesUnlocked - 1) 
+		{
 			lightType++;
-		} else {
+		} 
+		else 
+		{
 			lightType = 0;
 		}
 
-		switch (lightType) {
-		case LightType.normal:
-			lightObject.color = Color.white;
-			centerLight.color = Color.white;
-			break;
-		case LightType.bio:
-			lightObject.color = Color.blue;
-			centerLight.color = Color.blue;
-			break;
-		case LightType.temple:
-			lightObject.color = Color.green;
-			centerLight.color = Color.green;
-			break;
+		switch (lightType) 
+		{
+			case LightType.normal:
+				lightObject.color = Color.white;
+				centerLight.color = Color.white;
+				break;
+			case LightType.bio:
+				lightObject.color = Color.blue;
+				centerLight.color = Color.blue;
+				break;
+			case LightType.temple:
+				lightObject.color = Color.green;
+				centerLight.color = Color.green;
+				break;
 		}
-
 	}
 
-	void Start() {
-
+	void Start() 
+	{
 		lightObject = this.GetComponent<Light> ();
 		lightObject.intensity = 2;
-
 	}
 
-	void Update() {
-		if (Input.GetKeyDown ("tab") && isOn && (numberOfLightTypesUnlocked > 1) ) {
+	void Update() 
+	{
+		if (Input.GetKeyDown ("tab") && isOn && (numberOfLightTypesUnlocked > 1) ) 
+		{
 			toggleOnOff();
 			startTimer();
 		}
 
-		if (Input.GetKeyDown ("q")) {
+		if (Input.GetKeyDown ("q")) 
+		{
 			upgradeSearchlight();
 		}
 
-		if (startTime > 0f) {
+		if (startTime > 0f) 
+		{
 			checkTimer ();
 		}
-
 	}
-
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="10" SoundbankVersion="113">
 	<RootPaths>
-		<ProjectRoot>/Users/sorenlaulainen/Library/Application Support/Wwise/Bottles/wwise/dosdevices/y:/Desktop/temple/Wwise/</ProjectRoot>
-		<SourceFilesRoot>/Users/sorenlaulainen/Library/Application Support/Wwise/Bottles/wwise/dosdevices/y:/Desktop/temple/Wwise/.cache/Mac/</SourceFilesRoot>
-		<SoundBanksRoot>/Users/sorenlaulainen/Library/Application Support/Wwise/Bottles/wwise/dosdevices/y:/Desktop/temple/Wwise/GeneratedSoundBanks/Mac/</SoundBanksRoot>
+		<ProjectRoot>/Users/soundtracks/Library/Application Support/Wwise/Bottles/wwise/dosdevices/z:/Volumes/Projects/UNITY PROJECTS/temple/Wwise/</ProjectRoot>
+		<SourceFilesRoot>/Users/soundtracks/Library/Application Support/Wwise/Bottles/wwise/dosdevices/z:/Volumes/Projects/UNITY PROJECTS/temple/Wwise/.cache/Mac/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/soundtracks/Library/Application Support/Wwise/Bottles/wwise/dosdevices/z:/Volumes/Projects/UNITY PROJECTS/temple/Wwise/GeneratedSoundBanks/Mac/</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>/Users/sorenlaulainen/Library/Application Support/Wwise/Bottles/wwise/dosdevices/y:/Desktop/temple/Wwise/GeneratedSoundBanks/Mac/</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>/Users/soundtracks/Library/Application Support/Wwise/Bottles/wwise/dosdevices/z:/Volumes/Projects/UNITY PROJECTS/temple/Wwise/GeneratedSoundBanks/Mac/</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>

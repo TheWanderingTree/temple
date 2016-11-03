@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Battery : MonoBehaviour {
+public class Battery : MonoBehaviour 
+{
 
 	// CLASS VARIABLES
 
@@ -16,15 +16,15 @@ public class Battery : MonoBehaviour {
 
 	// CLASS METHODS
 	
+	//increases or decreases an amount of fuel from the battery
 	static public void adjustBattery( int amount)
-	// increases or decreases an amount of fuel from the battery
 	{
 		currentAmount = currentAmount + amount;
 	}
 
-	public void constantlyDepleteBattery() {
 	//constantly depletes the battery by depletionAmount every depletionInterval (in seconds)
-
+	public void constantlyDepleteBattery() 
+	{
 		int timeAsInt = (int)Time.time;
 		if ((timeAsInt % depletionInterval == 0) && (timeAsInt != timeAtLastDeplete)) {
 			timeAtLastDeplete = timeAsInt;
@@ -32,30 +32,33 @@ public class Battery : MonoBehaviour {
 		}
 	}
 
-	static public void upgradeBattery()
 	// upgrades the battery's tier and max capacity
+	static public void upgradeBattery()
 	{
-		if (batteryTier < 3) {
+		if (batteryTier < 3) 
+		{
 			batteryTier++;
 		}
 	}
 
+	// resets the battery amount after death
 	static public void resetBattery()
-		// resets the battery amount after death
 	{
 		currentAmount = startingAmount;
 	}
 
-	static public void print() {
+	static public void print() 
+	{
 		print ("Current battery amount: " + currentAmount);
 	}
 
-	void Start() {
+	void Start() 
+	{
 		resetBattery ();
-
 	}
 
-	void Update() {
+	void Update() 
+	{
 		constantlyDepleteBattery ();
 	}
 }

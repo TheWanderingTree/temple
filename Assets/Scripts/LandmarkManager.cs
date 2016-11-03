@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
-public class Landmark : IComparable<Landmark> {
+public class Landmark : IComparable<Landmark> 
+{
 
 	// CLASS FIELDS
 	
@@ -48,7 +49,9 @@ public class Landmark : IComparable<Landmark> {
 
 	// CLASS METHODS
 
-	public int CompareTo (Landmark other) {						// compares landmarks by distance
+	// compares landmarks by distance
+	public int CompareTo (Landmark other) 
+	{						
 	
 		if (other == null) {
 			return 1;
@@ -57,23 +60,27 @@ public class Landmark : IComparable<Landmark> {
 		return Distance - other.Distance;
 	}
 	
-	public void addToJournal() {								// adds name, description, bearing, tier and audio preview of the landmark to the journal
+	// adds name, description, bearing, tier and audio preview of the landmark to the journal
+	public void addToJournal() 
+	{								
 	
-
 	}
 
-	public void enterLandmark()	{								// transition from ocean walk to landmark
-	
+	// transition from ocean walk to landmark
+	public void enterLandmark()	
+	{								
 		Visited = true;
 	}
 
-	public void exitLandmark() {								// transition from landmark back to ocean walk
-	
+	// transition from landmark back to ocean walk
+	public void exitLandmark() 
+	{								
 
 	}
 
-	public void Print() {										// prints information about landmark
-	
+	// prints information about landmark
+	public void Print() 
+	{										
 		Debug.Log (Title.ToUpper () + ": " + Description + "\n" + "TIER " + Tier + " / " + Distance + "m / " + Bearing);
 		if (Visited) { Debug.Log ("Visited\n"); }
 		if (Completed) { Debug.Log ("Completed\n"); }
@@ -81,57 +88,61 @@ public class Landmark : IComparable<Landmark> {
 		Debug.Log ("=============================================\n");
 	}
 
-	void Start () {
-	
+	void Start () 
+	{
 
 	}
 
 }
 	
-public class LandmarkManager : Singleton<LandmarkManager> {	
-
+public class LandmarkManager : Singleton<LandmarkManager> 
+{	
 	public List<Landmark> tier1Landmarks = new List<Landmark>();
 	public List<Landmark> tier2Landmarks = new List<Landmark>();
 	public List<Landmark> tier3Landmarks = new List<Landmark>();
 
-	public T selectRandomItem<T>( List<T> list) {
+	public T selectRandomItem<T>( List<T> list) 
+	{
 		int chosenIndex = UnityEngine.Random.Range (0, list.Count-1);
 		T chosenItem = list[chosenIndex]; 
 
 		return chosenItem;
 	}
 
-	public T pluckRandomItem<T>( List<T> list) {
+	public T pluckRandomItem<T>( List<T> list) 
+	{
 		int chosenIndex = UnityEngine.Random.Range (0, list.Count-1);
 		T chosenItem = list[chosenIndex]; 
 		list.RemoveAt (chosenIndex);
 		return chosenItem;
 	}
 
-	public List<Landmark> getLandmarksFromTier( int tier) {
+	public List<Landmark> getLandmarksFromTier( int tier) 
+	{
 
 		List<Landmark> chosenList = null;
 
-		switch (tier) {
-		
-		case 1:
-			chosenList = LandmarkManager.Instance.tier1Landmarks;
-			break;
-		
-		case 2:
-			chosenList = LandmarkManager.Instance.tier2Landmarks;
-			break;
-		
-		case 3:
-			chosenList = LandmarkManager.Instance.tier3Landmarks;
-			break;
-		
+		switch (tier) 
+		{
+			case 1:
+				chosenList = LandmarkManager.Instance.tier1Landmarks;
+				break;
+			
+			case 2:
+				chosenList = LandmarkManager.Instance.tier2Landmarks;
+				break;
+			
+			case 3:
+				chosenList = LandmarkManager.Instance.tier3Landmarks;
+				break;
 		}
 
 		return chosenList;
 	}
 
-	void randomizeLandmarks( List<Landmark> list ) {			// randomizes bearings and distances for all landmarks in a certain list, then sorts based on distance
+	// randomizes bearings and distances for all landmarks in a certain list, then sorts based on distance
+	void randomizeLandmarks( List<Landmark> list ) 
+	{			
 
 		//create list of available bearings
 		List<Landmark.Direction> availableBearings = Enum.GetValues (typeof(Landmark.Direction)).Cast<Landmark.Direction>().ToList ();
@@ -148,19 +159,24 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 		List<Landmark.Chunk> availableWest = new List<Landmark.Chunk> (); availableWest.AddRange(chunks);
 		List<Landmark.Chunk> availableNorthwest = new List<Landmark.Chunk> (); availableNorthwest.AddRange(chunks);
 
-		foreach (Landmark landmark in list) {
+		foreach (Landmark landmark in list) 
+		{
 
 			//assign random direction chunk to landmark
 			landmark.DirectionChunk = selectRandomItem(availableBearings);
 
-			switch (landmark.DirectionChunk) {
+			switch (landmark.DirectionChunk) 
+			{
 
 			case Landmark.Direction.N:
 				int rightOfNorth;
 				rightOfNorth = UnityEngine.Random.Range (0,1);
-				if (rightOfNorth == 0) {
+				if (rightOfNorth == 0) 
+				{
 					landmark.Bearing = UnityEngine.Random.Range(338,359);
-				} else {
+				} 
+				else 
+				{
 					landmark.Bearing = UnityEngine.Random.Range (0,23);
 				}
 				break;
@@ -189,12 +205,14 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 			}
 
 			//pluck a chunk from the available chunks for that bearing and remove a bearing from the list of available bearings if two chunks have already been taken
-			if (!landmark.Endgate) {
+			if (!landmark.Endgate) 
+			{
 
 				//randomize chunk limit
 				int chunkLimit = UnityEngine.Random.Range(4,5);
 
-				switch (landmark.DirectionChunk) {
+				switch (landmark.DirectionChunk) 
+				{
 
 					case Landmark.Direction.N:
 						landmark.DistanceChunk = pluckRandomItem(availableNorth);
@@ -238,7 +256,8 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 				} 
 
 				// assign a random distance within that chunk to the landmark
-				switch (landmark.DistanceChunk) {
+				switch (landmark.DistanceChunk) 
+				{
 
 					case Landmark.Chunk.A:
 						landmark.Distance = UnityEngine.Random.Range(50, 75);
@@ -272,7 +291,8 @@ public class LandmarkManager : Singleton<LandmarkManager> {
 		list.Sort ();
 	}
 
-	void Start () {
+	void Start () 
+	{
 
 		Landmark wreck = new Landmark(
 			"Wreck" ,

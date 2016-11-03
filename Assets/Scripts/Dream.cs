@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Dream : MonoBehaviour {
+public class Dream : MonoBehaviour 
+{
 
 	// CLASS VARIABLES
 	
@@ -12,8 +13,8 @@ public class Dream : MonoBehaviour {
 	
 	// CLASS METHODS
 	
-	public void setDreamCharacters()
 	// set Dream characters to active based on choices
+	public void setDreamCharacters()
 	{
 		
 	}

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour 
+{
 
 	// CLASS VARIABLES
 
@@ -17,32 +18,32 @@ public class Player : MonoBehaviour {
 	// CLASS METHODS
 
 	static public void assignTraits (string _trait1, string _trait2, string _trait3, string _trait4) 
-	// assigns four traits to the player, replacing previous traits
 	{
+	// assigns four traits to the player, replacing previous traits
 
 	}
 
 	static public void addItem ( string item ) 
-	// adds an item to the player's inventory
 	{
+	// adds an item to the player's inventory
 
 	}
 
 	static public void removeItem ( string item )
-	// removes an item from the player's inventory
 	{
+	// removes an item from the player's inventory
 
 	}
 
 	static public void Dive()
-		// transitions from submarine phase to ocean phase
 	{
+	// transitions from submarine phase to ocean phase
 		GameManager.Instance.changeToPhase (GameManager.GamePhase.ocean);
 	}
 
 	static public void stayInside()
-		// increases Temple Pull and forces a dive on the next day
 	{
+	// increases Temple Pull and forces a dive on the next day
 		mustDive = true;
 		TemplePull.adjustTemplePull (20);
 	}

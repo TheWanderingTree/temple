@@ -18,11 +18,11 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	1437246667	Azimuth			\Default Work Unit\Azimuth	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	18623334	previewSeamount	Y:\Desktop\temple\Wwise\.cache\Mac\SFX\test2_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewSeamount		2688060
-	63580490	nothingAmb	Y:\Desktop\temple\Wwise\.cache\Mac\SFX\00_deepwater_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\nothingSwitch\nothingAmb		1576872
-	117671739	nothingStrings	Y:\Desktop\temple\Wwise\.cache\Mac\SFX\05_nothing_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\nothingSwitch\nothingStrings		1220208
-	209292514	previewCave	Y:\Desktop\temple\Wwise\.cache\Mac\SFX\04_hollow_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewCave		2299952
-	384195994	previewWell	Y:\Desktop\temple\Wwise\.cache\Mac\SFX\03_unidentified_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewWell		2454788
-	455606088	previewPlateau	Y:\Desktop\temple\Wwise\.cache\Mac\SFX\02_lamentingwhales_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewPlateau		5142544
-	705674426	previewWreck	Y:\Desktop\temple\Wwise\.cache\Mac\SFX\test1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewWreck		264472
+	18623334	previewSeamount	Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\.cache\Mac\SFX\test2_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewSeamount		2688060
+	63580490	nothingAmb	Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\.cache\Mac\SFX\00_deepwater_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\nothingSwitch\nothingAmb		1576872
+	117671739	nothingStrings	Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\.cache\Mac\SFX\05_nothing_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\nothingSwitch\nothingStrings		1220208
+	209292514	previewCave	Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\.cache\Mac\SFX\04_hollow_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewCave		2299952
+	384195994	previewWell	Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\.cache\Mac\SFX\03_unidentified_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewWell		2454788
+	455606088	previewPlateau	Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\.cache\Mac\SFX\02_lamentingwhales_loop_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewPlateau		5142544
+	705674426	previewWreck	Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\.cache\Mac\SFX\test1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\LandmarkPreviews\previewWreck		264472
 

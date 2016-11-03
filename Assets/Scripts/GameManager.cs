@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class GameManager : Singleton<GameManager> {
+﻿public class GameManager : Singleton<GameManager> {
 
 	// CLASS FIELDS
 
@@ -40,14 +37,14 @@ public class GameManager : Singleton<GameManager> {
 
 	// CLASS METHODS
 	
-	public void pauseGame()
 	// pauses the game
+	public void pauseGame()
 	{
 		if (!Paused) { Paused = true; } else { Paused = false; }	
 	}
 	
-	public void changeToPhase( GamePhase chosenPhase )
 	// changes the game phase
+	public void changeToPhase( GamePhase chosenPhase )
 	{
 		Phase = chosenPhase;
 		print ("Phase: " + Phase);

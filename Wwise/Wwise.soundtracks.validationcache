@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ValidationCache Version="1" SchemaVersion="70">
-	<ValidationCacheItem File="Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="3254978048" DateHigh="30482662"/>
+	<ValidationCacheItem File="Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="3845697536" DateHigh="30482684"/>
 	<ValidationCacheItem File="Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\Actor-Mixer Hierarchy\Factory SoundSeed Air Objects.wwu" DateLow="3254978048" DateHigh="30482662"/>
 	<ValidationCacheItem File="Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\Actor-Mixer Hierarchy\Factory Synth One.wwu" DateLow="3254978048" DateHigh="30482662"/>
 	<ValidationCacheItem File="Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\Attenuations\Default Work Unit.wwu" DateLow="3254978048" DateHigh="30482662"/>
@@ -36,5 +36,6 @@
 	<ValidationCacheItem File="Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\States\Default Work Unit.wwu" DateLow="3264978048" DateHigh="30482662"/>
 	<ValidationCacheItem File="Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\Switches\Default Work Unit.wwu" DateLow="3264978048" DateHigh="30482662"/>
 	<ValidationCacheItem File="Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\Triggers\Default Work Unit.wwu" DateLow="3264978048" DateHigh="30482662"/>
+	<ValidationCacheItem File="Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\Wwise.soundtracks.wsettings" DateLow="3767667200" DateHigh="30483050"/>
 	<ValidationCacheItem File="Z:\Volumes\Projects\UNITY PROJECTS\temple\Wwise\Wwise.wproj" DateLow="3264978048" DateHigh="30482662"/>
 </ValidationCache>

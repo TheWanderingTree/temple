@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System.Collections.Generic;
 
-public class UpdateUI : Singleton<UpdateUI> {
+public class UpdateUI : Singleton<UpdateUI> 
+{
 
 	/*DEBUG UI OBJECTS*/
 	[SerializeField]
@@ -25,7 +25,8 @@ public class UpdateUI : Singleton<UpdateUI> {
 	private GameObject sphere;
 	private List<Landmark> chosenLandmarks;
 
-	public static void PolarToCartesian(float radius, float degrees, float elevation, out Vector3 outCart){
+	public static void PolarToCartesian(float radius, float degrees, float elevation, out Vector3 outCart) 
+	{
 		float polar = degrees * Mathf.Deg2Rad;
 		float a = radius * Mathf.Cos (elevation);
 		outCart.y = a * Mathf.Cos (polar);
@@ -33,19 +34,25 @@ public class UpdateUI : Singleton<UpdateUI> {
 		outCart.x = a * Mathf.Sin (polar);
 	}
 
-	public void updateLandmarks() {
+	public void updateLandmarks() 
+	{
 	
 		//remove all current UI elements
-		foreach (Transform child in mapPanel.transform) {
+		foreach (Transform child in mapPanel.transform) 
+		{
 			GameObject.Destroy(child.gameObject);
 		}
 		
-		if (GameObject.FindWithTag("Sphere")) {
+		if (GameObject.FindWithTag("Sphere")) 
+		{
 			GameObject[] spheres = GameObject.FindGameObjectsWithTag ("Sphere");
 			
-			foreach (GameObject sphere in spheres) {
+			foreach (GameObject sphere in spheres) 
+			{
 
-				if (sphere.GetComponent<AkAmbient>() != null) { // if the sphere has an audio event on it
+				// if the sphere has an audio event on it
+				if (sphere.GetComponent<AkAmbient>() != null) 
+				{ 
 
 					//Get the AKAmbient component on the sphere
 					AkAmbient akAmbientComponent = sphere.GetComponent<AkAmbient>();
@@ -62,18 +69,17 @@ public class UpdateUI : Singleton<UpdateUI> {
 				GameObject.Destroy(sphere.gameObject);
 			}
 		}
-	
 	}
 
-	public void displayLandmarks() {
-
-
+	public void displayLandmarks() 
+	{
 
 		//pull up the list of landmarks for the chosen tier
 		chosenLandmarks = LandmarkManager.Instance.getLandmarksFromTier (Periscope.Instance.tier );
 	
 		//for each landmark in the list...
-		foreach (Landmark landmark in chosenLandmarks) {
+		foreach (Landmark landmark in chosenLandmarks) 
+		{
 			
 			//get the bearing
 			int chosenBearing = landmark.Bearing;
@@ -113,7 +119,9 @@ public class UpdateUI : Singleton<UpdateUI> {
 			//set the text
 			textComponent.text = "•";
 
-			if (landmark.AudioEventName != null) { // if the landmark has an audio preview event
+			// if the landmark has an audio preview event
+			if (landmark.AudioEventName != null) 
+			{ 
 
 				//create an AK GameObj component on the sphere
 				AkGameObj akGameObjComponent = sphere.AddComponent<AkGameObj>();
@@ -126,34 +134,24 @@ public class UpdateUI : Singleton<UpdateUI> {
 				akAmbientComponent.eventID = (int)landmark.AudioEventName;
 			}
 		}
-
 	}
 
 	public void updateDebugText() 
-	// updates the debug text objects
 	{
+	// updates the debug text objects
 		bearingLabel.text = "Bearing: " + Periscope.Instance.bearing.ToString ();
 		tierLabel.text = "Tier: " + Periscope.Instance.tier.ToString ();
 		phaseLabel.text = "Game Phase: " + GameManager.Instance.Phase.ToString();
 	}
 
-	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		displayLandmarks ();
 		updateDebugText ();
-	
-
-
-
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-
-
+	void Update () 
+	{
 	
 	}
-	
-
 }

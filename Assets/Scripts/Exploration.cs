@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System;
 
-public class Exploration : MonoBehaviour {
+public class Exploration : MonoBehaviour 
+{
 	
 	// CLASS VARIABLES
 
@@ -15,13 +15,14 @@ public class Exploration : MonoBehaviour {
 	
 	// CLASS METHODS
 	
-	public void Encounter()
 	// plucks an encounter from the list of available encounters and triggers it
+	public void Encounter()
 	{
 		
 	}
 
-	public void EnterLandmark() {
+	public void EnterLandmark()
+	{
 	
 	}
 }

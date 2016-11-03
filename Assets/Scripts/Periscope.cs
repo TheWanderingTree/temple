@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Periscope : Singleton<Periscope> {
+public class Periscope : Singleton<Periscope> 
+{
 		
 	// CLASS VARIABLES
 
@@ -18,8 +18,8 @@ public class Periscope : Singleton<Periscope> {
 	// CLASS METHODS
 	
 	void adjustTier()
-	// adjusts the distance the periscope is auditioning/viewing
 	{
+	// adjusts the distance the periscope is auditioning/viewing
 		if (Input.GetKeyDown ("up")) {
 			if (tier < 3) {
 				tier++;
@@ -42,8 +42,8 @@ public class Periscope : Singleton<Periscope> {
 	}
 
 	void adjustVelocity() 
-	// adjusts rotation speed of periscope based on input
 	{
+	// adjusts rotation speed of periscope based on input
 		if (Input.GetKey("right")) {
 			
 			if (rotationSpeed < 8f) { 
@@ -59,15 +59,15 @@ public class Periscope : Singleton<Periscope> {
 	}
 
 	void drift()
-	// drifts the periscope after releasing input
 	{
+	// drifts the periscope after releasing input
 		if (rotationSpeed > 0f) { rotationSpeed -= Time.deltaTime*acc; if (rotationSpeed < 0f) { rotationSpeed = 0f; } }
 		if (rotationSpeed < 0f) { rotationSpeed += Time.deltaTime*acc; if (rotationSpeed > 0f) { rotationSpeed = 0f; } }
 	}
 
 	void rotatePeriscope()
-	// rotates the periscope
 	{
+	// rotates the periscope
 		bearing += Time.deltaTime*rotationSpeed;
 		if (bearing < 0f) { bearing = 360f; }
 		if (bearing > 360f) { bearing = 0f; }
@@ -80,12 +80,13 @@ public class Periscope : Singleton<Periscope> {
 	}
 
 	void commitBearing()
-		// locks in the current bearing for exploration, disables searchlight in periscope view
 	{
+	// locks in the current bearing for exploration, disables searchlight in periscope view
 		chosenBearing = bearing;	
 	}
 
-	void Update() {
+	void Update() 
+	{
 		if (Input.GetKey("right") | Input.GetKey("left")) { adjustVelocity(); }
 		else { if (rotationSpeed != 0f) { drift(); } }
 
